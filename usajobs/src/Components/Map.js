@@ -21,6 +21,63 @@ class MyMap extends React.Component {
         console.log(response);
     } )
     console.log(this.jobs)
+    this.options = {
+      title: {
+        text: "Widget click by location",
+        style: {
+          color: "#fff"
+        }
+      },
+      chart: {
+        backgroundColor: "transparent",
+        type: "map",
+        map: null
+      },
+      mapNavigation: {
+        enabled: true,
+        enableButtons: false
+      },
+      credits: {
+        enabled: false
+      },
+      colorAxis: {
+        dataClasses: [
+          {
+            from: 1,
+            color: "#C40401",
+            name: "widget name one"
+          },
+          {
+            from: 2,
+            color: "#0200D0",
+            name: "widget name two"
+          }
+        ]
+      },
+      tooltip: {
+        pointFormatter: function () {
+          return this.name;
+        }
+      },
+      legend: {
+        align: "right",
+        verticalAlign: "top",
+        x: -100,
+        y: 70,
+        floating: true,
+        layout: "vertical",
+        valueDecimals: 0,
+        backgroundColor:
+          // theme
+          (Highcharts.defaultOptions &&
+            Highcharts.defaultOptions.legend &&
+            Highcharts.defaultOptions.legend.backgroundColor) ||
+          "rgba(255, 255, 255, 0.85)"
+      },
+      
+    };
+
+    
   }
 
   render() {
