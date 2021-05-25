@@ -1,7 +1,7 @@
 export default async function getData() {
     var jobs = []
     var dataDict = {}
-    const baseURL = 'https://data.usajobs.gov/api/Search?Page=2&ResultsPerPage=1000'
+    const baseURL = 'https://data.usajobs.gov/api/Search?Page=2&ResultsPerPage=500'
     const response = await fetch(baseURL, {
         method: 'GET',
         mode: 'cors',
@@ -21,8 +21,8 @@ export default async function getData() {
         let dict = {}
         dict['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
         dict['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
-        dict['locations'] = element.MatchedObjectDescriptor.PositionLocation
-        dict['remuneration'] = element.MatchedObjectDescriptor.PositionRemuneration
+        dict['locations'] = element.MatchedObjectDescriptor.PositionLocation[0]
+        dict['remuneration'] = element.MatchedObjectDescriptor.PositionRemuneration[0]
         jobs.push(dict)
     });
     return jobs

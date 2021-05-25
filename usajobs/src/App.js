@@ -3,8 +3,7 @@ import Map from "./Components/Map.js";
 import jobsData from "./API/jobsData"
 import { useEffect, useState } from 'react';
 import mapData from './API/mapData';
-import Table from "./Components/table.js";
-
+import ShowTableData from "./Components/showTableData"
 
 function App() {
 
@@ -38,13 +37,9 @@ function App() {
         </div>
       </div>
       <Map></Map>
-      <Table className="place"></Table>
-
-    
-     
-      
-      
-
+      <div>
+      <ShowTableData jobdata = {jobData} className="place"></ShowTableData>
+      </div>
     </div>
   );
 }
