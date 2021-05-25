@@ -16,15 +16,21 @@ class MyMap extends React.Component {
     this.mapData = new mapData();
     //console.log(this.mapData);
     this.jobsData = jobsData();
+    
     console.log(this.jobsData);
+
     this.jobsData.then(response => {
         console.log(response);
     } )
-    console.log(this.jobs)
+    /*var positions = this.jobsData.then(response => { 
+      return response
+     })
+    console.log("Position array: ",positions)*/
+    //console.log(this.jobs)
     // preparing the config of map with empty data
     this.options = {
       title: {
-        text: "Widget click by location",
+        text: "",
         style: {
           color: "#fff"
         }
@@ -121,7 +127,7 @@ class MyMap extends React.Component {
             var value = (i % 2) + 1;
             var type = value === 1 ? "widget name one" : "widget name two";
             var row = i;
-            console.log(name);
+            //console.log(name);
             this.options.series[0].data.push({
               value: value,
               name: name,
