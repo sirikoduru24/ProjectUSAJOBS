@@ -19,6 +19,22 @@ function App() {
 
   return (
     <div className = "App">
+      <div class="filter-content">
+        <div class="rows">
+        <div class="select-filter" id="filter1">
+          <row>
+            <label id="filterlabel" for="filterselect">Select Filter to see Jobs:</label>
+            <select id="filterselect">
+              <option value="value" selected>Apply Filters</option>
+              <option value="Field">Field</option>
+              <option value="Parttime">Part Time</option>
+              <option value="Fulltime">Full Time</option>
+              <option value="Renumeration">Salary</option>
+            </select>
+          </row>
+        </div>
+        </div>
+      </div>
       <Map></Map>
     </div>
   );
