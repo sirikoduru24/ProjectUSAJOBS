@@ -3,6 +3,8 @@ import Map from "./Components/Map.js";
 import jobsData from "./API/jobsData"
 import { useEffect, useState } from 'react';
 import mapData from './API/mapData';
+import Table from "./Components/table.js";
+
 
 function App() {
 
@@ -18,7 +20,7 @@ function App() {
   },[])
 
   return (
-    <div className = "App">
+    <div className = "App container">
       <div class="filter-content">
         <div class="rows">
         <div class="select-filter" id="filter1">
@@ -36,6 +38,13 @@ function App() {
         </div>
       </div>
       <Map></Map>
+      <Table className="place"></Table>
+
+    
+     
+      
+      
+
     </div>
   );
 }

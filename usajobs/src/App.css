@@ -37,6 +37,7 @@
   }
 }
 
+
 .filter-content{
   margin-top: 5px;
   margin-bottom: 5px;
@@ -93,3 +94,23 @@ label {
 body{
   background-image: url('./Components/416d5b84b159d4b9f4ee671848eaa78f.jpg');
 }
+
+.place{
+  border-style: solid;
+  color:white;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: teal;
+  display: flex;
+  
+}
+.container{
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  grid-template-columns: 9fr 5fr;
+  grid-template-rows: 1fr 13fr;
+  
+}
+
