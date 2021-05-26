@@ -6,6 +6,9 @@ import mapData from './API/mapData';
 import ShowTableData from "./Components/showTableData"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LineChart from "./Components/Chart2";
+import Houses from "./Components/Chart1";
+import Fields from "./Components/statistics";
 
 function App() {
 
@@ -106,7 +109,9 @@ function App() {
           <ShowTableData jobdata = {jobData} typedata = {jobTypeData}/>
         </Route>
         <Route path="/houses">
-          <ShowTableData jobdata = {jobData} />
+        <div><Houses></Houses></div>
+        <div><LineChart></LineChart></div>
+        <div><Fields></Fields></div>
         </Route>
       </Switch>
     </div>
