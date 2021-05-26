@@ -100,10 +100,7 @@ body{
   color:white;
   margin-left: auto;
   margin-right: auto;
-  background-color: teal;
-  display: flex;
-  width: 100px;
-  height: 100px;  
+  width: auto;  
 }
 .container{
   display: grid;
@@ -113,5 +110,9 @@ body{
   grid-template-columns: 9fr 5fr;
   grid-template-rows: 1fr 13fr;
   
+}
+.tableFloat {
+  height: 650px;
+  overflow: auto;
 }
 
