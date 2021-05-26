@@ -7,7 +7,7 @@ function ShowTableData(props) {
             let jobsCountArray = []
             data.forEach(element => {
                     let dict = {}
-                    dict['countryCode'] = element.locations.CountrySubDivisionCode
+                    dict['countryCode'] = element.locations
                     let maxRem = parseFloat(element.remuneration.MaximumRange)
                     let minRem = parseFloat(element.remuneration.MinimumRange)
                     if(element.remuneration.RateIntervalCode === "Per Hour") {
@@ -64,16 +64,13 @@ function ShowTableData(props) {
         }
     }
     return (
-        <table className="place">
-            <thead className="place">
-                <caption>JOBS DATA</caption>
+        <table class = "place">
+            <thead>
                 <tr>
                     <th scope="col">State</th>
                     <th scope="col">Number of Jobs</th>
                     <th scope="col">Minimum Salary</th>
                     <th scope="col">Maximum Salary</th>
-                    <th scope="col">Number of Full-Time Jobs</th>
-                    <th scope="col">Number of Part-Time Jobs</th>
                 </tr>
             </thead>
             <tbody>{renderJobsData()}</tbody>
