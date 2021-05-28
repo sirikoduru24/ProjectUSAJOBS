@@ -28,6 +28,7 @@ function App() {
 
   const [remunerationData, setRemunerationData] = useState()
   const [fieldData, setFieldData] = useState()
+  
 
 
 
@@ -50,6 +51,7 @@ function App() {
       if (jobData){
       jobData.forEach(element => {
         let dict = {}
+        
         dict['countryCode'] = element.locations
         let maxRem = parseFloat(element.remuneration.MaximumRange)
         let minRem = parseFloat(element.remuneration.MinimumRange)
@@ -114,11 +116,12 @@ function App() {
         let result = []
         
           let dict = {}
-           
+          
           let count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0, count10 = 0
           jobData.forEach(element => {
               if(element.positionTitle.includes("Military")) {
                 count1 = count1 + 1  
+                
               }
               if(element.positionTitle.includes("Medicine") || element.positionTitle.includes("Nurse")) {
                 count2 = count2 + 1
@@ -143,6 +146,7 @@ function App() {
               }
               
           });
+          
           dict['Field1'] = count1
           dict['Field2'] = count2
           dict['Field3'] = count3
@@ -366,9 +370,12 @@ function App() {
           </div>
         </Route>
         <Route path="/houses">
-        <div className="sizing1"><Houses jobdata = {fieldData} typedata = {jobTypeData}></Houses></div>
-        <div className="sizing"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
-        
+        <div class="container-fluid">
+          <div class="row">
+        <div className=" col-6"><Houses jobdata = {fieldData} typedata = {jobTypeData}></Houses></div>
+        <div className="col-6"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
+        </div>
+        </div>
         </Route>
       </Switch>
     </div>
