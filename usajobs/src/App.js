@@ -146,7 +146,7 @@ function App() {
               }
               
           });
-          
+         
           dict['Field1'] = count1
           dict['Field2'] = count2
           dict['Field3'] = count3
@@ -155,7 +155,7 @@ function App() {
           dict['Field6'] = count6
           dict['Field7'] = count7
           dict['Field8'] = count8
-          
+          console.log("check this:", dict)
           if(count1 > 0 )
           {
             dict['FieldName1'] = "Military Services"
