@@ -21,9 +21,11 @@ export default async function getData(extension) {
       let dict = {}
       dict['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
       dict['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
-      dict['locations'] = element.MatchedObjectDescriptor.PositionLocation[0]['CountrySubDivisionCode']
+      dict['cityName'] = element.MatchedObjectDescriptor.PositionLocation[0]['CityName']
+      dict['locations'] =  element.MatchedObjectDescriptor.PositionLocation[0]['CountrySubDivisionCode']
       dict['remuneration'] = element.MatchedObjectDescriptor.PositionRemuneration[0]
       dict['jobType'] = element.MatchedObjectDescriptor.PositionSchedule[0]['Code']
+      dict['CloseDate'] = element.MatchedObjectDescriptor.ApplicationCloseDate
       jobs.push(dict)
   });
 return jobs

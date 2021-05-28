@@ -1,8 +1,8 @@
 import axios from "axios";
 
-function  mapData() {
+function  mapData(extension) {
     let baseUrl = "https://code.highcharts.com/mapdata/";
-    return axios.get(baseUrl + "countries/us/us-all.geo.json");
+    return axios.get(baseUrl + extension);
 }
 
 export default mapData;
