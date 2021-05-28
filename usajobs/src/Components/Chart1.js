@@ -29,7 +29,7 @@ let borderColors = [
 
 const legend = {
   display: true,
-  position: "bottom",
+  position: 'bottom',
   labels: {
     fontColor: "#323130",
     fontSize: 14
@@ -43,24 +43,61 @@ const options = {
 };
 
 export default function Houses(props) {
+  const renderFieldData = () =>{
+    if(props.jobdata) {
+
+console.log("inside")
+      console.log(props.jobdata) 
+      let fieldCountArray=[]
+      let fieldNameArray=[]
+      props.jobdata.forEach(element => {
+        fieldCountArray.push(element.Field1)
+        fieldCountArray.push(element.Field2)
+        fieldCountArray.push(element.Field3)
+        fieldCountArray.push(element.Field4)
+        fieldCountArray.push(element.Field5)
+        fieldCountArray.push(element.Field6)
+        fieldCountArray.push(element.Field7)
+        fieldCountArray.push(element.Field8)
+
+
+        fieldNameArray.push(element.FieldName1)
+        fieldNameArray.push(element.FieldName2)
+        fieldNameArray.push(element.FieldName3)
+        fieldNameArray.push(element.FieldName4)
+        fieldNameArray.push(element.FieldName5)
+        fieldNameArray.push(element.FieldName6)
+        fieldNameArray.push(element.FieldName7)
+        fieldNameArray.push(element.FieldName8)
+        
+
+      });
+
+
+    const data = {
+      labels: fieldNameArray,
+      datasets: [
+        {
+          data: fieldCountArray,
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
+          borderWidth: 1
+        }
+      ]
+    };
+  
+    return (
+      <div className="container Houses">
+        
+        <Pie data={data} legend={legend} options={options} />
+      </div>
+    );
+    
+
+  }
   
 
-  const data = {
-    labels: ["a","b","c","d","e","f","g","h","i","j"],
-    datasets: [
-      {
-        data: [40,80,10,40,20,21,10,40,20,21],
-        backgroundColor: backgroundColors,
-        borderColor: borderColors,
-        borderWidth: 1
-      }
-    ]
-  };
-
-  return (
-    <div className="container Houses">
-      
-      <Pie data={data} legend={legend} options={options} />
-    </div>
-  );
+  
+}
+return <div> {renderFieldData()} </div>
 }

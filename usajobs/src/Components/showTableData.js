@@ -16,6 +16,7 @@ function ShowTableData(props) {
                     }
                     dict['minRem'] = Math.floor(minRem)
                     dict['maxRem'] = Math.floor(maxRem)
+                    
                     jobsCountArray.push(dict)
             });
             

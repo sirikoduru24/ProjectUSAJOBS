@@ -1,4 +1,5 @@
 import './App.css';
+import './charts.css';
 import Map from "./Components/Map.js";
 import jobsData from "./API/jobsData"
 import { useEffect, useState } from 'react';
@@ -17,6 +18,7 @@ function App() {
   const [jobData,setJobsData] = useState()
   const [mapsData,setMapsData] = useState()
   const [jobTypeData, setJobTypeData] = useState()
+
   const [allStatesData, setAllStatesData] = useState()
   const [filterData,setFilterData] = useState()
   const [groupedByStates,setGroupedByStates] = useState()
@@ -24,18 +26,178 @@ function App() {
   const [selectedStateCityName, setselectedStateCityNames] = useState()
   const [selectedStateCityJobs,setselectedStateCityJobs] = useState()
 
+  const [remunerationData, setRemunerationData] = useState()
+  const [fieldData, setFieldData] = useState()
+
+
+
+
   useEffect( () => {
     const getJobsData = async () => {
-      const data1 = await jobsData('Page=1&ResultsPerPage=1000')
-      const data2 = await jobsData('Page=2&ResultsPerPage=1000')
-      const data3 = await jobsData('Page=3&ResultsPerPage=1000')
+      const data1 = await jobsData('Page=1&ResultsPerPage=100')
+      const data2 = await jobsData('Page=2&ResultsPerPage=100')
+      const data3 = await jobsData('Page=3&ResultsPerPage=100')
       let res = data1.concat(data2,data3)
-      console.log(res)
+      console.log("Main:",res)
       setJobsData(res)
     }
     getJobsData()
   },[])
 
+  useEffect( () => {
+    const getRemunerations = async () => {
+      let jobsCountArray = []
+      if (jobData){
+      jobData.forEach(element => {
+        let dict = {}
+        dict['countryCode'] = element.locations
+        let maxRem = parseFloat(element.remuneration.MaximumRange)
+        let minRem = parseFloat(element.remuneration.MinimumRange)
+        if(element.remuneration.RateIntervalCode === "Per Hour") {
+            minRem = minRem*8*30*12
+            maxRem = maxRem*8*30*12
+        }
+        dict['minRem'] = Math.floor(minRem)
+        dict['maxRem'] = Math.floor(maxRem)
+        jobsCountArray.push(dict)
+      });
+
+    const groupBy = (array, key) => {
+    return array.reduce((result, currentValue) => {
+      (result[currentValue[key]] = result[currentValue[key]] || []).push(
+        currentValue
+      );
+      return result;
+    }, {});
+  };
+  
+  const groupByCity = groupBy(jobsCountArray, 'countryCode');
+  console.log('Group',groupByCity)
+  let finalArr = []
+  for(const [key,value] of Object.entries(groupByCity)) {
+    let min = 1000000, max = 0
+    value.forEach(elem => {
+        if(min > elem.minRem) {
+            min = elem.minRem
+        }
+        if(max < elem.maxRem) {
+            max = elem.maxRem
+        }
+    });
+    let dict = {}
+    dict['state'] = key
+    dict['minRem'] = min
+    dict['maxRem'] = max
+    finalArr.push(dict)
+
+      }
+      console.log("finalarr:", finalArr)
+      setRemunerationData(finalArr)
+    }}
+    getRemunerations()
+
+  },[jobData])
+
+  
+  useEffect( () => {
+    const getFieldData = async () => {
+      if(jobData) {
+        const groupBy = (array, key) => {
+          return array.reduce((result, currentValue) => {
+            (result[currentValue[key]] = result[currentValue[key]] || []).push(
+              currentValue
+            );
+            return result;
+          }, {});
+        };
+        
+        let result = []
+        
+          let dict = {}
+           
+          let count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0, count10 = 0
+          jobData.forEach(element => {
+              if(element.positionTitle.includes("Military")) {
+                count1 = count1 + 1  
+              }
+              if(element.positionTitle.includes("Medicine") || element.positionTitle.includes("Nurse")) {
+                count2 = count2 + 1
+              }
+              if(element.positionTitle.includes("Accounting") || element.positionTitle.includes("Finance") || element.positionTitle.includes("Financial")) {
+                count3 = count3 + 1
+              }
+              if(element.positionTitle.includes("IT") || element.positionTitle.includes("Engineer") || element.positionTitle.includes("Engineering") ) {
+                count4 = count4 + 1
+              }
+              if(element.positionTitle.includes("Cook") || element.positionTitle.includes("Food")) {
+                count5 = count5 + 1
+              }
+              if(element.positionTitle.includes("Attorney") || element.positionTitle.includes("Law")) {
+                count6 = count6 + 1
+              }
+              if(element.positionTitle.includes("Teach")) {
+                count7 = count7 + 1  
+              }
+              if(element.positionTitle.includes("Social Worker") || element.positionTitle.includes("Counselling")) {
+                count8 = count8 + 1  
+              }
+              
+          });
+          dict['Field1'] = count1
+          dict['Field2'] = count2
+          dict['Field3'] = count3
+          dict['Field4'] = count4
+          dict['Field5'] = count5
+          dict['Field6'] = count6
+          dict['Field7'] = count7
+          dict['Field8'] = count8
+          
+          if(count1 > 0 )
+          {
+            dict['FieldName1'] = "Military Services"
+          }
+          if(count2 > 0 )
+          {
+            dict['FieldName2'] = "Medical Services"
+          }
+          if(count3 > 0 )
+          {
+            dict['FieldName3'] = "Finance & Accounting"
+          }
+          if(count4 > 0 )
+          {
+            dict['FieldName4'] = "Engineering"
+          }
+          if(count5 > 0 )
+          {
+            dict['FieldName5'] = "Food Industry"
+          }
+          if(count6 > 0 )
+          {
+            dict['FieldName6'] = "Law & Justice"
+          }
+          if(count7 > 0 )
+          {
+            dict['FieldName7'] = "Teaching"
+          }
+          if(count8 > 0 )
+          {
+            dict['FieldName8'] = "Social Work"
+          }
+          
+          result.push(dict)
+        
+        setFieldData(result)
+      }
+    }
+    getFieldData()
+  },[jobData])
+    
+  
+  
+    
+
+  
   useEffect( () => {
     const getJobsByType = async () => {
       if(jobData) {
@@ -204,9 +366,9 @@ function App() {
           </div>
         </Route>
         <Route path="/houses">
-        <div><Houses></Houses></div>
-        <div><LineChart></LineChart></div>
-        <div><Fields></Fields></div>
+        <div className="sizing1"><Houses jobdata = {fieldData} typedata = {jobTypeData}></Houses></div>
+        <div className="sizing"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
+        
         </Route>
       </Switch>
     </div>

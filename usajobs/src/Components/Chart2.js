@@ -1,30 +1,47 @@
+import { stableSort } from "highcharts";
 import React from "react";
 import { Line, Pie } from "react-chartjs-2";
+
 export default function LineChart(props) {
+  const renderJobsData = () => {
+    if(props.jobdata) {
+      console.log("inside")
+      console.log(props.jobdata) 
+      let stateArray=[]
+      let minArray=[]
+      let maxArray=[]
+      props.jobdata.forEach(element => {
+        stateArray.push(element.state)
+        minArray.push(element.minRem)
+        maxArray.push(element.maxRem)
+      });
+    
+    
     const data = {
-        labels: ["state1","state2","state3","state4","state5"],
+
+      
+        labels: stateArray,
         datasets: [
           {
             label: "Max Salary",
-            data: [40,80,10,40,20],
+            data: maxArray,
             fill: false,
-            backgroundColor: "blue",
-            borderColor: "red",
+            backgroundColor: "rgb(252, 70, 26)",
+            borderColor: "rgba(252, 70, 26, 0.5)",
             
           },
           {
             label: "Min Salary",
-            data: [20,30,5,10,5],
+            data: minArray,
             fill: false,
-            backgroundColor: "green",
-            borderColor: "pink",
-            
+            backgroundColor: "rgb(0, 109, 140)",
+      borderColor: "rgba(0, 109, 140, 0.5)",
           }
         ]
       };
       const legend = {
         display: true,
-        position: "bottom",
+        position: 'bottom',
         labels: {
           fontColor: "#323130",
           fontSize: 14,
@@ -39,18 +56,32 @@ export default function LineChart(props) {
               },
             },
           ],
+          xAxes: [
+            {
+              ticks: {
+                autoSkip: false,
+                maxRotation: 180,
+                minRotation: 180
+              }
+            }
+          ],
         },
         tooltips: {
-          mode: "label",
+          //mode: "label",
         },
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
       };
     
       return (
+        
         <div className="container Houses">
           
-          <Line data={data} legend={legend} options={options} />
+          <Line  data={data} legend={legend} options={options}></Line> 
+          
         </div>
-      );
-}
+      );}}
+      
+      return <div> {renderJobsData()} </div>
+
+  }
