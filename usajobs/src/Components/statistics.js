@@ -1,44 +1,31 @@
+import './JobTime.css';
 import React from "react";
 import {Bar} from "react-chartjs-2";
   
   
 function Fields(props) {
-  const data = {
-    labels: ["state1","state2","state3","state4","state5"],
-    datasets: [
-      {
-        label: "Max Salary",
-        data: [40,80,10,40,20],
-        fill: false,
-        backgroundColor: "blue",
-        borderColor: "red",
-        
-      },
-      {
-        label: "Min Salary",
-        data: [20,30,5,10,5],
-        fill: false,
-        backgroundColor: "green",
-        borderColor: "pink",
-        
+  const options = {
+    legend: {
+      align: "bottom",
+      display: true,
+      position: "bottom",
+      labels: {
+        fontColor: "#fff",
+        fontSize: 28
       }
-    ]
-  };
-  const legend = {
-    display: true,
-    position: "bottom",
-    labels: {
-      fontColor: "#323130",
-      fontSize: 14,
     },
-};
-const options = {
     scales: {
       yAxes: [
         {
+          stacked: true,
           ticks: {
             beginAtZero: true,
           },
+        },
+      ],
+      xAxes: [
+        {
+          stacked: true,
         },
       ],
     },
@@ -46,13 +33,59 @@ const options = {
       mode: "label",
     },
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
   };
+  const legend = {
+    display: true,
+    position: "bottom",
+    labels: {
+      fontColor: "#323130",
+      fontSize: 28,
+    },
+}
+
+  const displayJobTime = () => {
+    if(props.jobTypeData) {
+      console.log("Rucha jobTypeData: ", props.jobTypeData)
+      let stateData = props.jobTypeData
+      console.log("Rucha : ", stateData)
+      const stateName=[]
+      const FTcount=[]
+      const PTcount=[]
+      for(let i=0; i<stateData.length; i++){
+        stateName.push(stateData[i].state)
+        FTcount.push(stateData[i].FullTime)
+        PTcount.push(stateData[i].PartTime)
+      }
+      console.log("Hey There! ", stateName, FTcount, PTcount)
+      const data = {
+          labels: stateName,
+          datasets: [
+            {
+              label: "Full Time",
+              data: FTcount,
+              fill: false,
+              backgroundColor: "magenta",
+              borderColor: "red",
+              
+            },
+            {
+              label: "Part Time",
+              data: PTcount,
+              fill: false,
+              backgroundColor: "green",
+              borderColor: "pink",
+              
+            }
+          ]
+      }
+      return(<div><Bar  className="PartFullDiv" data={data} options={options} legend={legend}></Bar></div>)
+    }
+  }
 
   return (
-    <div className="container Houses">
-      
-      <Bar data={data} legend={legend} options={options} />
+    <div>
+      {displayJobTime()}
     </div>
   );
 }

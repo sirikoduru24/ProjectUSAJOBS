@@ -92,7 +92,8 @@ label {
 }
 
 body{
-  background-image: url('./Components/416d5b84b159d4b9f4ee671848eaa78f.jpg');
+  /*background-image: url('./Components/416d5b84b159d4b9f4ee671848eaa78f.jpg');*/
+  background: linear-gradient(336deg, maroon, navy 75%);
 }
 
 .place{

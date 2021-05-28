@@ -26,6 +26,8 @@ export default async function getData(extension) {
       dict['remuneration'] = element.MatchedObjectDescriptor.PositionRemuneration[0]
       dict['jobType'] = element.MatchedObjectDescriptor.PositionSchedule[0]['Code']
       dict['CloseDate'] = element.MatchedObjectDescriptor.ApplicationCloseDate
+      dict['hiringPath'] = element.MatchedObjectDescriptor.UserArea.Details.HiringPath
+      
       jobs.push(dict)
   });
 return jobs

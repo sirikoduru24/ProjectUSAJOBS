@@ -13,6 +13,8 @@ import Fields from "./Components/statistics";
 import StateData from "./Components/StateData"; 
 import FilterForStateMaps from "./Components/FilterForStateMaps"
 import Donut from "./Components/DonutChart"
+import PublicJobs from "./Components/publicJobs"
+
 function App() {
 
   const [jobData,setJobsData] = useState()
@@ -29,6 +31,7 @@ function App() {
   const [remunerationData, setRemunerationData] = useState()
   const [fieldData, setFieldData] = useState()
   
+  const [hiringPaths, setHiringPaths] = useState()
 
 
 
@@ -244,6 +247,40 @@ function App() {
     }
     getMapsData()
   },[])
+
+  useEffect( () => {
+    const getHiringPaths = async () => {
+      if(jobData){
+        const groupBy = (array, key) => {
+          return array.reduce((result, currentValue) => {
+            (result[currentValue[key]] = result[currentValue[key]] || []).push(
+              currentValue
+            );
+            return result;
+          }, {});
+        };
+        const groupByState = groupBy(jobData, 'locations');
+        let stateHiringPaths = []
+        let pubCount=0
+        for(const [state,hp] of Object.entries(groupByState)) {
+          let shp = {}
+          shp['state'] = state      
+            hp.forEach(elem => {
+              elem.hiringPath.forEach(hp => {
+                if(hp==='public'){
+                  pubCount=pubCount+1
+                }
+              })
+            });
+          //}
+          shp['PublicJobs']  = pubCount
+          stateHiringPaths.push(shp)
+        }
+        setHiringPaths(stateHiringPaths)
+      }
+    }
+    getHiringPaths()
+  },[jobData])
   
   useEffect( () => {
     const allStatesInfo = async () => {
@@ -375,6 +412,10 @@ function App() {
         <div className=" col-6"><Houses jobdata = {fieldData} typedata = {jobTypeData}></Houses></div>
         <div className="col-6"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
         </div>
+          <div class="row">
+            <div class="col-6"><Fields jobTypeData={jobTypeData}></Fields></div>
+            <div class="col-6"><PublicJobs hiringPaths={hiringPaths}></PublicJobs></div>
+          </div>
         </div>
         </Route>
       </Switch>
