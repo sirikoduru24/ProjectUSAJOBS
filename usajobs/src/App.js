@@ -14,6 +14,8 @@ import StateData from "./Components/StateData";
 import FilterForStateMaps from "./Components/FilterForStateMaps"
 import Donut from "./Components/DonutChart"
 import PublicJobs from "./Components/publicJobs"
+//import FilterForFields from "./Components/FilterForFields"
+import FilterForSearch from "./Components/FilterForSearch"
 
 function App() {
 
@@ -29,11 +31,10 @@ function App() {
   const [selectedStateCityJobs,setselectedStateCityJobs] = useState()
 
   const [remunerationData, setRemunerationData] = useState()
-  const [fieldData, setFieldData] = useState()
-  
+  const [fieldData1, setFieldData1] = useState()
   const [hiringPaths, setHiringPaths] = useState()
 
-
+  const [searchFilterData,setSearchFilterData] = useState()
 
 
   useEffect( () => {
@@ -117,14 +118,13 @@ function App() {
         };
         
         let result = []
-        
+        let fieldfilter = []
+          let i=0
           let dict = {}
-          
           let count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0, count10 = 0
           jobData.forEach(element => {
               if(element.positionTitle.includes("Military")) {
-                count1 = count1 + 1  
-                
+                count1 = count1 + 1
               }
               if(element.positionTitle.includes("Medicine") || element.positionTitle.includes("Nurse")) {
                 count2 = count2 + 1
@@ -149,7 +149,6 @@ function App() {
               }
               
           });
-         
           dict['Field1'] = count1
           dict['Field2'] = count2
           dict['Field3'] = count3
@@ -158,8 +157,6 @@ function App() {
           dict['Field6'] = count6
           dict['Field7'] = count7
           dict['Field8'] = count8
-          console.log("check this:", dict)
-          if(count1 > 0 )
           {
             dict['FieldName1'] = "Military Services"
           }
@@ -194,7 +191,7 @@ function App() {
           
           result.push(dict)
         
-        setFieldData(result)
+        setFieldData1(result)
       }
     }
     getFieldData()
@@ -379,18 +376,21 @@ function App() {
                 <Map mapdata = {mapsData} jobdata = {jobData}/>
               </div>
               <div class = "col-5 tableFloat">
-                <ShowTableData jobdata = {jobData}/>
+              <ShowTableData jobdata = {jobData}/>
               </div> 
             </div>
           </div>
         </Route>
         <Route path="/search">
-          <ShowTableData jobdata = {jobData}/>
+        <div>
++            <FilterForSearch statedata={allStatesData} setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)}/>
++          </div>
+        
         </Route>
         <Route path = "/stateMaps">
           <div class = "container-fluid">
           <div class = "row">
-            <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
+          <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
           </div>
           <div class = "row">
             <div class = "col-md-5">
@@ -409,8 +409,8 @@ function App() {
         <Route path="/houses">
         <div class="container-fluid">
           <div class="row">
-        <div className=" col-6"><Houses jobdata = {fieldData} typedata = {jobTypeData}></Houses></div>
-        <div className="col-6"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
+        <div className="sizing col-6"><Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses></div>
+        <div className=" col-6"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
         </div>
           <div class="row">
             <div class="col-6"><Fields jobTypeData={jobTypeData}></Fields></div>
@@ -425,3 +425,5 @@ function App() {
 }
 
 export default App;
+
+/* <FilterForFields fieldData1 = {fieldData1} ></FilterForFields> */
