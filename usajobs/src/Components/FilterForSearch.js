@@ -9,9 +9,15 @@ function getSelectedValue(props) {
     //let disabilityYes = document.getElementById("dyes").value;
     console.log("Selected Filters: ",state,minSalary, maxSalary, field, partTime, fullTime)
     filters['state']=state;
-    filters['minSalary']=minSalary;
-    filters['maxSalary']=maxSalary;
-    //props.setSearchFilterData(filters)
+    if(field !== ""){
+        filters['field']=field;
+    }
+    if(minSalary !== ""){
+        filters['minSalary']=minSalary;
+    }
+    if(maxSalary !== "") {
+        filters['maxSalary']=maxSalary;
+    }
     if(document.getElementById("part-time").checked)
     {
         filters['partTime'] = partTime;
@@ -22,6 +28,7 @@ function getSelectedValue(props) {
     }
     
     console.log(filters)
+    return filters;
 }
 
 function clearFilters() {
@@ -70,7 +77,7 @@ function FilterForSearch(props) {
         <input type="checkbox" id="part-time" value="Part-Time"/>
         <label for="part-time">Part-Time</label>
         </div>     
-        <button id="applyBtn" onClick={getSelectedValue}>Apply</button>
+        <button id="applyBtn" onClick={() => props.setSearchFilterData(getSelectedValue())}>Apply</button>
         <button id="resetBtn" onClick={clearFilters}>Clear</button>
     </div>
     )

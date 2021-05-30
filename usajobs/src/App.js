@@ -14,11 +14,8 @@ import StateData from "./Components/StateData";
 import FilterForStateMaps from "./Components/FilterForStateMaps"
 import Donut from "./Components/DonutChart"
 import PublicJobs from "./Components/publicJobs"
-<<<<<<< HEAD
-//import FilterForFields from "./Components/FilterForFields"
-=======
->>>>>>> 9239740eec35348071bcc866b9a5077001301800
 import FilterForSearch from "./Components/FilterForSearch"
+import Search from "./Components/search"
 
 function App() {
 
@@ -35,6 +32,7 @@ function App() {
 
   const [remunerationData, setRemunerationData] = useState()
   const [fieldData1, setFieldData1] = useState()
+  
   const [hiringPaths, setHiringPaths] = useState()
 
   const [searchFilterData,setSearchFilterData] = useState()
@@ -124,10 +122,12 @@ function App() {
         let fieldfilter = []
           let i=0
           let dict = {}
+          
           let count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0, count10 = 0
           jobData.forEach(element => {
               if(element.positionTitle.includes("Military")) {
-                count1 = count1 + 1
+                count1 = count1 + 1  
+                
               }
               if(element.positionTitle.includes("Medicine") || element.positionTitle.includes("Nurse")) {
                 count2 = count2 + 1
@@ -152,6 +152,7 @@ function App() {
               }
               
           });
+         
           dict['Field1'] = count1
           dict['Field2'] = count2
           dict['Field3'] = count3
@@ -160,6 +161,8 @@ function App() {
           dict['Field6'] = count6
           dict['Field7'] = count7
           dict['Field8'] = count8
+          console.log("check this:", dict)
+          if(count1 > 0 )
           {
             dict['FieldName1'] = "Military Services"
           }
@@ -379,32 +382,23 @@ function App() {
                 <Map mapdata = {mapsData} jobdata = {jobData}/>
               </div>
               <div class = "col-5 tableFloat">
-              <ShowTableData jobdata = {jobData}/>
+                <ShowTableData jobdata = {jobData}/>
               </div> 
             </div>
           </div>
         </Route>
         <Route path="/search">
-<<<<<<< HEAD
-        <div>
-+            <FilterForSearch statedata={allStatesData} setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)}/>
-+          </div>
-        
-=======
           <div>
-            <FilterForSearch statedata={allStatesData} setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)}/>
+            <FilterForSearch setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)} statedata={allStatesData}/>
           </div>
-          <div>
-            {(searchFilterData) && (
-              <p color="white">Hello There</p>
-            )} 
-          </div>
->>>>>>> 9239740eec35348071bcc866b9a5077001301800
+          {searchFilterData && (
+            <Search searchFilterData={searchFilterData} jobData={jobData}></Search>
+          )}
         </Route>
         <Route path = "/stateMaps">
           <div class = "container-fluid">
           <div class = "row">
-          <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
+            <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
           </div>
           <div class = "row">
             <div class = "col-md-5">
@@ -423,8 +417,8 @@ function App() {
         <Route path="/houses">
         <div class="container-fluid">
           <div class="row">
-        <div className="sizing col-6"><Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses></div>
-        <div className=" col-6"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
+        <div className=" col-6"><Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses></div>
+        <div className="col-6"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
         </div>
           <div class="row">
             <div class="col-6"><Fields jobTypeData={jobTypeData}></Fields></div>
@@ -439,5 +433,3 @@ function App() {
 }
 
 export default App;
-
-/* <FilterForFields fieldData1 = {fieldData1} ></FilterForFields> */
