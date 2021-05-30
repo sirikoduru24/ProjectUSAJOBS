@@ -14,6 +14,7 @@ import StateData from "./Components/StateData";
 import FilterForStateMaps from "./Components/FilterForStateMaps"
 import Donut from "./Components/DonutChart"
 import PublicJobs from "./Components/publicJobs"
+import FilterForSearch from "./Components/FilterForSearch"
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
   
   const [hiringPaths, setHiringPaths] = useState()
 
-
+  const [searchFilterData,setSearchFilterData] = useState()
 
 
   useEffect( () => {
@@ -385,7 +386,14 @@ function App() {
           </div>
         </Route>
         <Route path="/search">
-          <ShowTableData jobdata = {jobData}/>
+          <div>
+            <FilterForSearch statedata={allStatesData} setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)}/>
+          </div>
+          <div>
+            {(searchFilterData) && (
+              <p color="white">Hello There</p>
+            )} 
+          </div>
         </Route>
         <Route path = "/stateMaps">
           <div class = "container-fluid">
