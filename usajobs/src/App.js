@@ -14,7 +14,10 @@ import StateData from "./Components/StateData";
 import FilterForStateMaps from "./Components/FilterForStateMaps"
 import Donut from "./Components/DonutChart"
 import PublicJobs from "./Components/publicJobs"
+<<<<<<< HEAD
 //import FilterForFields from "./Components/FilterForFields"
+=======
+>>>>>>> 9239740eec35348071bcc866b9a5077001301800
 import FilterForSearch from "./Components/FilterForSearch"
 
 function App() {
@@ -382,10 +385,21 @@ function App() {
           </div>
         </Route>
         <Route path="/search">
+<<<<<<< HEAD
         <div>
 +            <FilterForSearch statedata={allStatesData} setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)}/>
 +          </div>
         
+=======
+          <div>
+            <FilterForSearch statedata={allStatesData} setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)}/>
+          </div>
+          <div>
+            {(searchFilterData) && (
+              <p color="white">Hello There</p>
+            )} 
+          </div>
+>>>>>>> 9239740eec35348071bcc866b9a5077001301800
         </Route>
         <Route path = "/stateMaps">
           <div class = "container-fluid">

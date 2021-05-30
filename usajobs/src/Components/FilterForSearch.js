@@ -1,5 +1,3 @@
-
-
 function getSelectedValue(props) {
     let filters = {}
     let state = document.getElementById("statedd").value;
@@ -26,6 +24,15 @@ function getSelectedValue(props) {
     console.log(filters)
 }
 
+function clearFilters() {
+    document.getElementById("statedd").value = "";
+    document.getElementById("minsalary").value = "";
+    document.getElementById("maxsalary").value = "";
+    document.getElementById("fielddd").value = "";
+    document.getElementById("part-time").checked = false;
+    document.getElementById("full-time").checked = false;
+}
+
 function FilterForSearch(props) {
     const showStates = () => {
         if(props.statedata) {
@@ -38,11 +45,11 @@ function FilterForSearch(props) {
 
     return (
     <div>
+        <label class="stateddlabel" for="statedd">State : </label>
         <select id="statedd">
             <option value="None" selected></option>
             {showStates()}
-        </select>
-        
+        </select>    
         <label for="fielddd">Select Field:</label>
         <select id="fielddd">
             <option value="None" selected></option>
@@ -53,23 +60,23 @@ function FilterForSearch(props) {
             <option value="Food Industry" >Food Industry</option>
             <option value="Other Fields" >Other Fields</option>
         </select>
-       
+        <label class="minsallabel" for="minsalary">Minimum Salary Expected : </label>
         <input type="number" id="minsalary" step="500"/>
+        <label class="maxsallabel" for="maxsalary">Maximum Salary Expected : </label>
         <input type="number" id="maxsalary" step="500"/>
-        <div className="trial">
+        <div>
         <input type="checkbox" id="full-time" value="Full-Time"/>
         <label for="full-time">Full-Time</label>
         <input type="checkbox" id="part-time" value="Part-Time"/>
         <label for="part-time">Part-Time</label>
-        </div>
-        
-     
-    <button id="applyBtn" onClick={getSelectedValue}>Apply</button>
-
+        </div>     
+        <button id="applyBtn" onClick={getSelectedValue}>Apply</button>
+        <button id="resetBtn" onClick={clearFilters}>Clear</button>
     </div>
     )
 }
 export default FilterForSearch
+
 
 /*<button id="applyBtn" onClick = {(e) => props.setSearchFilterData(e.target.value)}>Apply</button>
 
