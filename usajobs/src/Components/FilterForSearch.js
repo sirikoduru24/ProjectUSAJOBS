@@ -1,4 +1,4 @@
-import '/Users/larrisa/ProjectUSAJOBS/usajobs/src/App.css';
+
 
 function getSelectedValue(props) {
     let filters = {}
@@ -60,7 +60,7 @@ function FilterForSearch(props) {
         <input type="checkbox" id="full-time" value="Full-Time"/>
         <label for="full-time">Full-Time</label>
         <input type="checkbox" id="part-time" value="Part-Time"/>
-        <label for="Part-time">Part-Time</label>
+        <label for="part-time">Part-Time</label>
         </div>
         
      
