@@ -9,14 +9,24 @@ function getSelectedValue(props) {
     //let disabilityYes = document.getElementById("dyes").value;
     console.log("Selected Filters: ",state,minSalary, maxSalary, field, partTime, fullTime)
     filters['state']=state;
+    if(state === "None"){
+        return alert("State required")
+    }
     if(field !== ""){
         filters['field']=field;
     }
     if(minSalary !== ""){
         filters['minSalary']=minSalary;
     }
+    else
+    {
+        filters['minSalary']= 0 ;
+    }
     if(maxSalary !== "") {
         filters['maxSalary']=maxSalary;
+    }
+    else{
+        filters['maxSalary']= 100000000000000000;
     }
     if(document.getElementById("part-time").checked)
     {
@@ -53,7 +63,7 @@ function FilterForSearch(props) {
     return (
     <div>
         <label class="stateddlabel" for="statedd">State : </label>
-        <select id="statedd">
+        <select id="statedd" required>
             <option value="None" selected></option>
             {showStates()}
         </select>    
@@ -61,7 +71,7 @@ function FilterForSearch(props) {
         <select id="fielddd">
             <option value="None" selected></option>
             <option value="Military Services">Military Services</option>
-            <option value="Medical Sevices" >Medical Sevices</option>
+            <option value="Medical Services" >Medical Services</option>
             <option value="Finance and Accounting" >Finance and Accounting</option>
             <option value="Engineering" >Engineering</option>
             <option value="Food Industry" >Food Industry</option>
