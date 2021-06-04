@@ -1,0 +1,108 @@
+.tableDetails {
+    color: rgb(146, 187, 219);
+    margin-left: 0px;
+    margin-right: 0px; 
+    padding: 1px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+
+.srTb {
+    padding: 0px;
+}
+
+th, .searchCol{
+    border-bottom: 1px solid gray;
+    
+}
+
+th{
+    color: white;
+}
+
+label{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+#applyBtn {
+    width: 150px;
+    border: none;
+    background-color: /*rgb(141, 168, 252)*/ navy;
+    color: white;
+    height: 30px;
+    margin-bottom: 5px;
+    border: 1px solid grey;
+}
+
+#resetBtn {
+    width: 150px;
+    border: none;
+    height: 30px;
+    color:maroon;
+}
+
+.btnBar {
+}
+
+.searchBar{
+    margin-bottom: 15px; 
+    text-align: center;
+    margin-right: 0px;
+    padding-right: 1px;
+}
+
+
+.row1{
+    /*width: 100%;*/
+    padding-bottom: 15px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    margin-right: 0px;
+    
+}
+
+select, #minsalary, #maxsalary {
+    width: 150px;
+}
+
+#full-time, #part-time{
+    width: 50px;
+}
+
+.col-md{
+    margin-top: 5px;
+}
+.col-4{
+    padding-right: 1px;
+    /*overflow: auto;*/
+}
+
+.searchTable{
+    height: 420px;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.searchTable::-webkit-scrollbar{
+    background: transparent;
+    border: 1px solid rgb(146, 187, 219, 0.3);
+}
+
+.searchTable::-webkit-scrollbar-thumb{
+    background: rgb(146, 187, 219, 0.3);
+}
+
+.searchPage{
+    margin-right: 0px;
+}
+th.col{
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); 
+    background-color: rgba(0, 0, 0, 1);
+}
