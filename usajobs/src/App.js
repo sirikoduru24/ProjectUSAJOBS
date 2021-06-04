@@ -352,7 +352,7 @@ function App() {
   return (
     <Router>
       <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark ">
       <a class="navbar-brand"><h1 className="links">JOBS DASHBOARD</h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbarMd">
       <span class="navbar-toggler-icon"></span>
@@ -360,16 +360,16 @@ function App() {
       <div class="navbar-collapse collapse" id="collapsingNavbarMd">
         <ul class="navbar-nav">
           <li class="nav-item">
-              <a class="nav-link" href="/home"><h4 className="links text-dark">NATION WIDE JOBS DATA</h4></a>
+              <a class="nav-link" href="/home"><h4 className="links">NATION WIDE JOBS DATA</h4></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/stateMaps"><h4 className="links text-dark">STATE WIDE JOBS DATA</h4></a>
+              <a class="nav-link" href="/stateMaps"><h4 className="links">STATE WIDE JOBS DATA</h4></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/search"><h4 className="links text-dark">SEARCH</h4></a>
+              <a class="nav-link" href="/search"><h4 className="links">SEARCH</h4></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/houses"><h4 className="links text-dark">STATISTICS</h4></a>
+              <a class="nav-link" href="/houses"><h4 className="links">STATISTICS</h4></a>
           </li>
       </ul>
   </div>
