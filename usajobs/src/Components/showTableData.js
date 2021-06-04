@@ -53,11 +53,11 @@ function ShowTableData(props) {
             finalArr.sort((a, b) => (a.state > b.state) ? 1 : -1)
             const rows = finalArr.map((elem) => {
                 return(
-                    <tr>
-                        <td>{elem.state}</td>
-                        <td>{elem.jobCount}</td>
-                        <td>{elem.minRem}</td>
-                        <td>{elem.maxRem}</td>
+                    <tr className="tbRows">
+                        <td className="tbCol">{elem.state}</td>
+                        <td className="tbCol">{elem.jobCount}</td>
+                        <td className="tbCol">{elem.minRem}</td>
+                        <td className="tbCol">{elem.maxRem}</td>
                     </tr>
                 )
             })
@@ -65,17 +65,19 @@ function ShowTableData(props) {
         }
     }
     return (
-        <table class = "place">
+        <div>
+            {props.jobdata && (<table class = "place">
             <thead>
-                <tr>
-                    <th scope="col">State</th>
-                    <th scope="col">Number of Jobs</th>
-                    <th scope="col">Minimum Salary</th>
-                    <th scope="col">Maximum Salary</th>
+                <tr className="tbRows">
+                    <th className="tbCol">State</th>
+                    <th className="tbCol">Number of Jobs</th>
+                    <th className="tbCol">Minimum Salary</th>
+                    <th className="tbCol">Maximum Salary</th>
                 </tr>
             </thead>
             <tbody>{renderJobsData()}</tbody>
-        </table>
+        </table>)}
+        </div>
     )
 }
 

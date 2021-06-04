@@ -97,8 +97,7 @@ body{
 }
 
 .place{
-  border-style: solid;
-  color:white;
+  color: rgb(146, 187, 219);
   margin-left: auto;
   margin-right: auto;
   width: auto;  
@@ -145,4 +144,9 @@ body{
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: .25rem;
+}
+
+.tbCol{
+  border-bottom: 1px solid gray;;
+  text-align: center;
 }
