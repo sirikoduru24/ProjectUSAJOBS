@@ -1,11 +1,6 @@
 import React from "react";
 import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
-import "/Users/larrisa/ProjectUSAJOBS/usajobs/src/charts.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
-
 
 function Search(props) {
     const displayStateData = () => {
