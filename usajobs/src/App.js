@@ -378,10 +378,10 @@ function App() {
         <Route path="/home">
           <div class = "container-fluid">
             <div class = "row">
-              <div class = "col-7">
+              <div class = "col-md-7">
                 <Map mapdata = {mapsData} jobdata = {jobData}/>
               </div>
-              <div class = "col-5 tableFloat">
+              <div class = "col-md-5 tableFloat">
                 <ShowTableData jobdata = {jobData}/>
               </div> 
             </div>

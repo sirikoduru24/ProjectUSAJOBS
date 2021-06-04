@@ -7,7 +7,7 @@ require("highcharts/modules/map")(Highcharts);
 function Maps(props) {
   const options = {
     title: {
-      text: "JOBS DASHBOARD",
+      text: "",
       style: {
         color: "#fff"
       }
@@ -29,7 +29,7 @@ function Maps(props) {
     },
     tooltip: {
       pointFormatter: function () {
-        return '<div><div>'+this.name+'</div><div>'+this.value+'</div></div>'
+        return '<div> Job Count: '+this.value+'</div>'
       }
     },
     legend: {
@@ -52,7 +52,7 @@ function Maps(props) {
         name: "Available Jobs",
         dataLabels: {
           enabled: true,
-          color: "#FFFFFF",
+          color: "black",
           format: "{point.postal-code}",
           style: {
             textTransform: "uppercase"
