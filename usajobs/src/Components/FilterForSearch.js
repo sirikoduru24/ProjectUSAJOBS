@@ -1,3 +1,5 @@
+import './search.css'
+
 function getSelectedValue(props) {
     let filters = {}
     let state = document.getElementById("statedd").value;
@@ -61,12 +63,15 @@ function FilterForSearch(props) {
 }
 
     return (
-    <div>
-        <label class="stateddlabel" for="statedd">State : </label>
-        <select id="statedd" required>
-            <option value="None" selected></option>
-            {showStates()}
-        </select>    
+    <div className="search container-fluid">
+        <div className="row1 row">
+        <div className="col-md">
+                <label className="stateddlabel" for="statedd">State: </label>
+                <select className="" id="statedd" required>
+                    <option value="None" selected></option>
+                    {showStates()}
+                </select>    
+        </div>
         <div className="col-md">
             <label for="fielddd">Field:</label>
             <select id="fielddd">
@@ -79,10 +84,14 @@ function FilterForSearch(props) {
                 <option value="Other Fields" >Other Fields</option>
             </select>
         </div>
-        <label class="minsallabel" for="minsalary">Minimum Salary Expected : </label>
-        <input type="number" id="minsalary" step="500"/>
-        <label class="maxsallabel" for="maxsalary">Maximum Salary Expected : </label>
-        <input type="number" id="maxsalary" step="500"/>
+        <div className="col-md">
+            <label className="minsallabel" for="minsalary">Minimum Salary: </label>
+            <input type="number" id="minsalary" step="500"/>
+        </div>
+        <div className="col-md">
+            <label className="maxsallabel" for="maxsalary">Maximum Salary: </label>
+            <input type="number" id="maxsalary" step="500"/>
+        </div>
         <div className="jobTime col-md">
             <input type="checkbox" id="full-time" value="Full-Time"/>
             <label for="full-time">Full-Time</label>
@@ -90,29 +99,13 @@ function FilterForSearch(props) {
             <input type="checkbox" id="part-time" value="Part-Time"/>
             <label for="part-time">Part-Time</label>
         </div>    
-        <button id="applyBtn" onClick={() => props.setSearchFilterData(getSelectedValue())}>Apply</button>
-        <button id="resetBtn" onClick={clearFilters}>Clear</button>
+        <div className="btnBar col-md">
+            <button id="applyBtn" onClick={() => props.setSearchFilterData(getSelectedValue())}>Apply</button>
+            <button id="resetBtn" onClick={clearFilters}>Clear</button>
+        </div>
+        </div>
     </div>
     )
 }
 export default FilterForSearch
 
-
-/*<button id="applyBtn" onClick = {(e) => props.setSearchFilterData(e.target.value)}>Apply</button>
-
-<fieldset>
-      <span className="trial">Disability:</span>
-      
-      <input type="radio" id="dyes" name="disable" value="dYes"/>
-      <label  for="dYes">Yes</label>
-      <input type="radio" id="dno" name="disable" value="dNo"/>
-      <label for="dNo">No</label>
-      </fieldset>
-
-      if(document.getElementById("dyes").checked)
-    {
-        filters['disability']= disabilityYes
-    }
-
-
-*/
