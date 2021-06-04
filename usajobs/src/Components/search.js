@@ -173,7 +173,7 @@ function Search(props) {
         const date = elem['CloseDate']
         const url = elem['applyUrl']
         valueDiv.push(
-            <tr><td>{title}</td><td>{city}</td><td><a href={url}>Apply Link</a></td><td>{date}</td></tr>
+            <tr className="searchRows"><td className="searchCol">{title}</td><td className="searchCol">{city}</td><td className="searchCol"><a href={url}>Apply Link</a></td><td className="searchCol">{date}</td></tr>
             )
      
     })
@@ -186,21 +186,18 @@ function Search(props) {
                    
 
     return(
-        <div className="place tableFloat" >
-         <table class = "styles">
+        <div className="tableDetails container-flow" >
+         <table class = "srTB">
                         <thead>
                             <tr>
-                            <th>Title</th>
-                            <th>City</th>
-                            <th>Apply Link</th>
-                            <th>Date</th>
+                            <th className="col">Title</th>
+                            <th className="col">City</th>
+                            <th className="col">Apply Link</th>
+                            <th className="col">Date</th>
                             </tr>
                         </thead>    
                     </table>
-        <tbody className="displayed col" id="tableId">{displayStateData()} </tbody>
-        
-
-        
+        <tbody className="displayed" id="tableId">{displayStateData()} </tbody>
         </div>
     )
 }
