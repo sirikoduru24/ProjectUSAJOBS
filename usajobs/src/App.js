@@ -415,16 +415,12 @@ function App() {
           </div>
         </Route>
         <Route path="/houses">
-        <div class="container-fluid">
           <div class="row">
-        <div className=" col-6"><Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses></div>
-        <div className="col-6"><LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart></div>
-        </div>
-          <div class="row">
-            <div class="col-6"><Fields jobTypeData={jobTypeData}></Fields></div>
-            <div class="col-6"><PublicJobs hiringPaths={hiringPaths}></PublicJobs></div>
+            <Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses>
+            <LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart>
+            <Fields jobTypeData={jobTypeData}></Fields>
+            <PublicJobs hiringPaths={hiringPaths}></PublicJobs>
           </div>
-        </div>
         </Route>
       </Switch>
     </div>
