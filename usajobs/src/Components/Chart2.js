@@ -2,6 +2,11 @@ import { stableSort } from "highcharts";
 import React from "react";
 import { Line, Pie } from "react-chartjs-2";
 
+const styles = {
+  height: "600px",
+  width: "600px"
+}
+
 export default function LineChart(props) {
   const renderJobsData = () => {
     if(props.jobdata) {

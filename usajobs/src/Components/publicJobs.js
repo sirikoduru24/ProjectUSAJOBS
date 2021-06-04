@@ -2,7 +2,11 @@ import './publicJobs.css';
 import React from "react";
 import {Bar} from "react-chartjs-2";
   
-  
+const styles = {
+  height:'600px',
+  width: '600px'
+}
+
 function PublicJobs(props) {
   const options = {
     legend: {
@@ -30,7 +34,7 @@ function PublicJobs(props) {
       mode: "label",
     },
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
   };
   const legend = {
     display: true,
@@ -65,13 +69,14 @@ function PublicJobs(props) {
             }
           ]
       }
-      return(<div><Bar  className="PubJobDiv" data={data} options={options} legend={legend}></Bar></div>)
+      return(<Bar  className="PubJobDiv" data={data} options={options} legend={legend} width={500} height={500}></Bar>
+      )
       
     }
   }
 
   return (
-    <div>
+    <div class = "col-md-6" style = {styles}>
       {displayPublicJobs()}
     </div>
   );

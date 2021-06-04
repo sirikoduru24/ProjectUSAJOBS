@@ -2,7 +2,11 @@ import './JobTime.css';
 import React from "react";
 import {Bar} from "react-chartjs-2";
   
-  
+const styles = {
+  height:'600px',
+  width: '600px'
+}
+
 function Fields(props) {
   const options = {
     legend: {
@@ -33,7 +37,7 @@ function Fields(props) {
       mode: "label",
     },
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
   };
   const legend = {
     display: true,
@@ -79,12 +83,13 @@ function Fields(props) {
             }
           ]
       }
-      return(<div><Bar  className="PartFullDiv" data={data} options={options} legend={legend}></Bar></div>)
+      return(<div><Bar  className="PartFullDiv" data={data} options={options} legend={legend} width={500} height={500}
+      ></Bar></div>)
     }
   }
 
   return (
-    <div>
+    <div class = "col-md-6" style = {styles}>
       {displayJobTime()}
     </div>
   );
