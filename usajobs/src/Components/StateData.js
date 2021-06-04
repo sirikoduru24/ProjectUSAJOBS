@@ -20,10 +20,10 @@ function StateData(props) {
                         let controls = ".multiCollapseExample"+index
                         value.forEach((elem) => {
                             const title = elem['positionTitle']
-                            const url = elem['applyUrl']
+                            //const url = elem['applyUrl']
                             const date = elem['CloseDate']
                             valueDiv.push(
-                                <tr><td>{title}</td><td>{date}</td><td>{url}</td></tr>)
+                                <tr className="cityRows"><td className="cityCol">{title}</td><td className="cityCol">{date}</td></tr>)
                         })    
                           res.push(<tr
                             data-toggle="collapse"
@@ -37,8 +37,7 @@ function StateData(props) {
                         <thead>
                             <tr>
                             <th>Title</th>
-                            <th>Date</th>
-                            <th>Apply Link</th>
+                            <th>Application Close Date</th>
                             </tr>
                         </thead>
                         <tbody>{valueDiv}</tbody>
@@ -46,19 +45,12 @@ function StateData(props) {
                 }   
                     return res;
                     }
-                    return (
-                        <table class = "styles">
-                            <thead>
-                                <tr id = 't01'>
-                                    <th>Name Of The City</th>
-                                    <th>Number Of Jobs </th>
-                                </tr>    
-                            </thead>
-                            <tbody>
-                                {results()}
-                            </tbody>
-                        </table>
-                    )
+                    let arr = [<thead><tr id = 't01'>
+                    <th>Name Of The City</th>
+                    <th>Number Of Jobs </th>
+                </tr></thead>]
+                arr.push(<tbody>{results()}</tbody>)
+                    return arr
                          
                 }
                
@@ -68,7 +60,9 @@ function StateData(props) {
         )
     }
     return (
-        <div>{displayStateData()}</div>        
+            <table class = "styles ">
+                {displayStateData()}
+            </table>
     )
 }
     

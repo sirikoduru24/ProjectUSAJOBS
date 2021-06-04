@@ -1,9 +1,9 @@
 .styles {
-    width: 700px;
+    width: 500px;
     height: 70px;
     text-align: center;
-    background-color: aqua;
-    color: black;
+    background-color:transparent;
+    color: rgb(146, 187, 219);;
 }
 .styling1 {
     text-align: center;
@@ -21,4 +21,11 @@
     flex-direction: row;
     flex-flow:wrap;
     width: auto;
+}
+.cityRows{
+    background-color: transparent;
+}
+
+.cityCol {
+    border-bottom: 1px solid  grey;
 }
