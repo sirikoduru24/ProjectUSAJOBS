@@ -150,3 +150,12 @@ body{
   border-bottom: 1px solid gray;;
   text-align: center;
 }
+
+.donutprops{
+  height: 500px;
+  width:500px
+}
+
+.stateLabelPadding {
+  padding-left: 25px;
+}

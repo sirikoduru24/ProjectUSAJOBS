@@ -401,12 +401,12 @@ function App() {
             <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
           </div>
           <div class = "row">
-            <div class = "col-md-5">
+            <div class = "col-md-6 donutprops">
               {(filterData && selectedStateCityName) && (
                 <Donut citiesData = {selectedStateCityName} jobCount = {selectedStateCityJobs}>
                 </Donut>)}
             </div>
-            <div class = 'col-md-7'>
+            <div class = 'col-md-6' style={{alignContent:'center'}}>
             {filterData && (
             <StateData citiesData = {groupedByCities}></StateData>
           )}
