@@ -39,8 +39,14 @@ const legend = {
 const options = {
   title: {
     display: true
-  }
+  },
+  maintainAspectRatio: false
 };
+
+const styles = {
+  height: "450px",
+  width: "450px",
+}
 
 export default function StateChart(props) {
     const prepareChart = () => {
@@ -59,13 +65,13 @@ export default function StateChart(props) {
                 ]
               };
               return (
-                <Doughnut data={data} legend={legend} options={options} />
+                <Doughnut data={data} legend={legend} options={options} style={styles}/>
             )
         }
     }
     
   return (
-    <div className="container Houses">
+    <div style={styles} className="container stateChart" id="stateDoughnut">
       {prepareChart()}
     </div>
   );
