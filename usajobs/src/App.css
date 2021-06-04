@@ -117,3 +117,32 @@ body{
   overflow: auto;
 }
 
+.navbar{
+  background-color: transparent;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.nav-link{
+  color: white;
+}
+
+.links:hover{
+  color: #61dafb !important;
+}
+
+.links {
+  color: white;
+  padding: 10px;
+}
+
+.navbar-toggler {
+  padding: .25rem .75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
