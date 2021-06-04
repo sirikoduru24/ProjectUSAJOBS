@@ -1,6 +1,9 @@
 import React from "react";
 import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './search.css'
+
+
 
 function Search(props) {
     const displayStateData = () => {
@@ -173,7 +176,7 @@ function Search(props) {
         const date = elem['CloseDate']
         const url = elem['applyUrl']
         valueDiv.push(
-            <tr className="searchRows"><td className="searchCol">{title}</td><td className="searchCol">{city}</td><td className="searchCol"><a href={url}>Apply Link</a></td><td className="searchCol">{date}</td></tr>
+          <tr className="searchRows"><td className="searchCol">{title}</td><td className="searchCol">{city}</td><td className="searchCol"><a href={url}>Apply Link</a></td><td className="searchCol">{date}</td></tr>
             )
      
     })
@@ -187,7 +190,9 @@ function Search(props) {
 
     return(
         <div className="tableDetails container-flow" >
-         <table class = "srTB">
+            <div className="row">
+                <div className="searchTable col-4">
+                    <table className = "srTb">
                         <thead>
                             <tr>
                             <th className="col">Title</th>
@@ -196,8 +201,10 @@ function Search(props) {
                             <th className="col">Date</th>
                             </tr>
                         </thead>    
+                        <tbody className="displayed" id="tableId">{displayStateData()} </tbody>
                     </table>
-        <tbody className="displayed" id="tableId">{displayStateData()} </tbody>
+                </div>
+            </div>
         </div>
     )
 }
@@ -207,5 +214,3 @@ function Search(props) {
 
 export default Search;
 
-
-/*button class="applyfilter" onClick={applyFilterandShow(allData)}>Apply Filter</button>*/

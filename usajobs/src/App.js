@@ -392,7 +392,9 @@ function App() {
             <FilterForSearch setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)} statedata={allStatesData}/>
           </div>
           {searchFilterData && (
+            <div>
             <Search searchFilterData={searchFilterData} jobData={jobData}></Search>
+            </div>
           )}
         </Route>
         <Route path = "/stateMaps">
