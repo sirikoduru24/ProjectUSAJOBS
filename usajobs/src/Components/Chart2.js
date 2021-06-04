@@ -70,18 +70,13 @@ export default function LineChart(props) {
           //mode: "label",
         },
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
       };
     
       return (
-        
-        <div className="container Houses">
-          
-          <Line  data={data} legend={legend} options={options}></Line> 
-          
-        </div>
+        <Line  data={data} legend={legend} options={options} width={500} height={500} ></Line>
       );}}
       
-      return <div> {renderJobsData()} </div>
+      return <div class = "col-md-6" style={styles}> {renderJobsData()} </div>
 
   }

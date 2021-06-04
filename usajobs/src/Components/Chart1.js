@@ -39,8 +39,15 @@ const legend = {
 const options = {
   title: {
     display: true
-  }
+  },
+  responsive: true,
+  maintainAspectRatio: false,
 };
+
+const styles = {
+  height: "500px",
+  width: "500px"
+}
 
 export default function Houses(props) {
   const renderFieldData = () =>{
@@ -87,10 +94,7 @@ console.log("inside")
     };
   
     return (
-      <div className="container Houses">
-        
-        <Pie data={data} legend={legend} options={options} />
-      </div>
+      <Pie data={data} legend={legend} options={options} height = {500} width = {500}/>
     );
     
 
@@ -99,5 +103,5 @@ console.log("inside")
 
   
 }
-return <div> {renderFieldData()} </div>
+return <div class = "col-md-6"style={styles}> {renderFieldData()} </div>
 }
