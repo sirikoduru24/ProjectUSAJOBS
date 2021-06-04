@@ -10,6 +10,7 @@ function FilterForStateMaps(props) {
 }
     return (
     <div>
+        <label for="dropdown" class = "stateLabelPadding">Select State :</label>
         <select id = "dropdown" onChange = {(e) => props.setFilterData(e.target.value)}>{renderFilteredData()}
         </select>
     </div>
