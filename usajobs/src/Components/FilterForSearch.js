@@ -67,26 +67,29 @@ function FilterForSearch(props) {
             <option value="None" selected></option>
             {showStates()}
         </select>    
-        <label for="fielddd">Select Field:</label>
-        <select id="fielddd">
-            <option value="None" selected></option>
-            <option value="Military Services">Military Services</option>
-            <option value="Medical Services" >Medical Services</option>
-            <option value="Finance and Accounting" >Finance and Accounting</option>
-            <option value="Engineering" >Engineering</option>
-            <option value="Food Industry" >Food Industry</option>
-            <option value="Other Fields" >Other Fields</option>
-        </select>
+        <div className="col-md">
+            <label for="fielddd">Field:</label>
+            <select id="fielddd">
+                <option value="None" selected></option>
+                <option value="Military Services">Military Services</option>
+                <option value="Medical Services" >Medical Services</option>
+                <option value="Finance and Accounting" >Finance and Accounting</option>
+                <option value="Engineering" >Engineering</option>
+                <option value="Food Industry" >Food Industry</option>
+                <option value="Other Fields" >Other Fields</option>
+            </select>
+        </div>
         <label class="minsallabel" for="minsalary">Minimum Salary Expected : </label>
         <input type="number" id="minsalary" step="500"/>
         <label class="maxsallabel" for="maxsalary">Maximum Salary Expected : </label>
         <input type="number" id="maxsalary" step="500"/>
-        <div>
-        <input type="checkbox" id="full-time" value="Full-Time"/>
-        <label for="full-time">Full-Time</label>
-        <input type="checkbox" id="part-time" value="Part-Time"/>
-        <label for="part-time">Part-Time</label>
-        </div>     
+        <div className="jobTime col-md">
+            <input type="checkbox" id="full-time" value="Full-Time"/>
+            <label for="full-time">Full-Time</label>
+        
+            <input type="checkbox" id="part-time" value="Part-Time"/>
+            <label for="part-time">Part-Time</label>
+        </div>    
         <button id="applyBtn" onClick={() => props.setSearchFilterData(getSelectedValue())}>Apply</button>
         <button id="resetBtn" onClick={clearFilters}>Clear</button>
     </div>
