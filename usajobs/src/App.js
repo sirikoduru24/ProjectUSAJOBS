@@ -354,14 +354,14 @@ function App() {
     <Router>
       <div>
       <nav class="navbar navbar-expand-lg navbar-dark ">
-      <a class="navbar-brand"><h1 className="links">JOBS DASHBOARD</h1></a>
+      <a class="navbar-brand inactiveLink"><h1 className="links">JOBS DASHBOARD</h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbarMd">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse collapse" id="collapsingNavbarMd">
         <ul class="navbar-nav">
           <li class="nav-item">
-              <a class="nav-link" href="/home"><h4 className="links">NATION WIDE JOBS DATA</h4></a>
+              <a class="nav-link" href="/"><h4 className="links">NATION WIDE JOBS DATA</h4></a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="/stateMaps"><h4 className="links">STATE WIDE JOBS DATA</h4></a>
@@ -370,28 +370,12 @@ function App() {
               <a class="nav-link" href="/search"><h4 className="links">SEARCH</h4></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/houses"><h4 className="links">STATISTICS</h4></a>
+              <a class="nav-link" href="/statistics"><h4 className="links">STATISTICS</h4></a>
           </li>
       </ul>
   </div>
 </nav>
 <Switch>
-        <Route path="/home">
-          <div class = "container-fluid">
-            <div class = "row">
-            {(!jobData) && (
-            <div class = "loaderProperties">
-            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
-                </div>)}
-              <div class = "col-md-7">
-                <Map mapdata = {mapsData} jobdata = {jobData}/>
-              </div>
-              <div class = "col-md-5 tableFloat">
-                <ShowTableData jobdata = {jobData}/>
-              </div> 
-            </div>
-          </div>
-        </Route>
         <Route path="/search">
           <div>
             <FilterForSearch setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)} statedata={allStatesData}/>
@@ -429,7 +413,7 @@ function App() {
           </div>
           </div>
         </Route>
-        <Route path="/houses">
+        <Route path="/statistics">
           <div class="row">
           {(!jobTypeData) && (
             <div class = "loaderProperties">
@@ -439,6 +423,22 @@ function App() {
             <LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart>
             <Fields jobTypeData={jobTypeData}></Fields>
             <PublicJobs hiringPaths={hiringPaths}></PublicJobs>
+          </div>
+        </Route>
+        <Route path="/">
+          <div class = "container-fluid">
+            <div class = "row">
+            {(!jobData) && (
+            <div class = "loaderProperties">
+            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                </div>)}
+              <div class = "col-md-7">
+                <Map mapdata = {mapsData} jobdata = {jobData}/>
+              </div>
+              <div class = "col-md-5 tableFloat">
+                <ShowTableData jobdata = {jobData}/>
+              </div> 
+            </div>
           </div>
         </Route>
       </Switch>

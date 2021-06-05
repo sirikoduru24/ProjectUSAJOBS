@@ -60,7 +60,7 @@ function PublicJobs(props) {
           labels: stateName,
           datasets: [
             {
-              label: "Public",
+              label: "Public Hiring Path",
               data: Pcount,
               fill: false,
               backgroundColor: "aqua",
