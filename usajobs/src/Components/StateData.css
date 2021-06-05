@@ -3,7 +3,7 @@
     height: 70px;
     text-align: center;
     background-color:transparent;
-    color: rgb(146, 187, 219);;
+    color: rgb(1, 30, 53);
 }
 .styling1 {
     text-align: center;
@@ -29,3 +29,7 @@
 .cityCol {
     border-bottom: 1px solid  grey;
 }
+th , td {
+    color:rgb(1, 30, 53) !important;
+     }
+    
