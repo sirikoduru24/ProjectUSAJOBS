@@ -40,8 +40,9 @@ function showDetails(elem){
 
 function Search(props) {
     const displayStateData = () => {
-    console.log(props.searchFilterData)
-    console.log(props.jobData)
+    if(props.jobData){
+    //console.log(props.searchFilterData)
+    //console.log(props.jobData)
     const filter = props.searchFilterData
     const jobData = props.jobData
     const sd = props.jobData
@@ -216,8 +217,8 @@ function Search(props) {
     console.log()
     
     return valueDiv
-//}
     }
+}
     
                    
 

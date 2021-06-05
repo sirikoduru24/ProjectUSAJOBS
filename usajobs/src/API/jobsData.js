@@ -19,7 +19,7 @@ export default async function getData(extension) {
   let searchResults = dataDict.SearchResult.SearchResultItems
   searchResults.forEach(element => {
       let dict = {}
-      console.log(element)
+      
       dict['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
       dict['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
       if(element.MatchedObjectDescriptor.PositionLocation[0] !== undefined) {
