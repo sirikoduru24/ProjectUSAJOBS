@@ -16,6 +16,7 @@ import Donut from "./Components/DonutChart"
 import PublicJobs from "./Components/publicJobs"
 import FilterForSearch from "./Components/FilterForSearch"
 import Search from "./Components/search"
+import Loader from "react-loader-spinner";
 
 function App() {
 
@@ -40,9 +41,9 @@ function App() {
 
   useEffect( () => {
     const getJobsData = async () => {
-      const data1 = await jobsData('Page=1&ResultsPerPage=100')
-      const data2 = await jobsData('Page=2&ResultsPerPage=100')
-      const data3 = await jobsData('Page=3&ResultsPerPage=100')
+      const data1 = await jobsData('Page=1&ResultsPerPage=1000')
+      const data2 = await jobsData('Page=2&ResultsPerPage=1000')
+      const data3 = await jobsData('Page=3&ResultsPerPage=1000')
       let res = data1.concat(data2,data3)
       console.log("Main:",res)
       setJobsData(res)
@@ -378,6 +379,10 @@ function App() {
         <Route path="/home">
           <div class = "container-fluid">
             <div class = "row">
+            {(!jobData) && (
+            <div class = "loaderProperties">
+            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                </div>)}
               <div class = "col-md-7">
                 <Map mapdata = {mapsData} jobdata = {jobData}/>
               </div>
@@ -391,17 +396,21 @@ function App() {
           <div>
             <FilterForSearch setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)} statedata={allStatesData}/>
           </div>
-          {searchFilterData && (
             <div>
+            {searchFilterData && (
             <Search searchFilterData={searchFilterData} jobData={jobData}></Search>
-            </div>
           )}
+          </div>
         </Route>
         <Route path = "/stateMaps">
           <div class = "container-fluid">
           <div class = "row">
             <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
           </div>
+          {(!jobData) && (
+            <div class = "loaderProperties">
+            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                </div>)}
           <div class = "row">
             <div class = "col-md-6 donutprops">
               {(filterData && selectedStateCityName) && (
@@ -418,6 +427,10 @@ function App() {
         </Route>
         <Route path="/houses">
           <div class="row">
+          {(!jobTypeData) && (
+            <div class = "loaderProperties">
+            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                </div>)}
             <Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses>
             <LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart>
             <Fields jobTypeData={jobTypeData}></Fields>

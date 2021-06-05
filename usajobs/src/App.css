@@ -126,7 +126,7 @@ label {
 }
 
 .links {
-  color:  rgb(1, 30, 53);
+  color:  white;
   padding: 10px;
 }
 
@@ -151,4 +151,14 @@ label {
 
 .stateLabelPadding {
   padding-left: 25px;
+  padding-top: 10px;
+}
+
+.loaderProperties {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 }
