@@ -15,7 +15,8 @@ function Maps(props) {
     chart: {
       backgroundColor: "transparent",
       type: "map",
-      map: null
+      map: null,
+      marginBottom: 60
     },
     mapNavigation: {
       enabled: true,
@@ -33,10 +34,10 @@ function Maps(props) {
       }
     },
     legend: {
-      align: "bottom",
-      horizontalAlign: "left",
-      x: 50,
-      y: 70,
+      align: 'center',
+      verticalAlign: 'bottom',
+      x: 0,
+      y: 0,
       floating: true,
       layout: "horizontal",
       valueDecimals: 0,
