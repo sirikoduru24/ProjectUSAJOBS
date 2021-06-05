@@ -2,8 +2,41 @@ import React from "react";
 import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './search.css'
+import $ from 'jquery'
 
+function showDetails(elem){
 
+    console.log(elem);
+    document.querySelector("#ltitle").textContent="Job Title : "
+    document.querySelector("#lvtitle").textContent=elem['positionTitle']
+
+    document.querySelector("#lcity").textContent="Location : "
+    document.querySelector("#lvcity").textContent=elem['cityName']
+
+    document.querySelector("#lsummary").textContent="Summary : "
+    document.querySelector("#lvsummary").textContent=elem['summary']
+
+    document.querySelector("#lduties").textContent="Major Duties : "
+    document.querySelector("#lvduties").textContent=elem['duties']
+
+    document.querySelector("#ltime").textContent="Job Time : "
+    if(elem['jobType']==="1"){
+        document.querySelector("#lvtime").textContent="Full Time"
+    }
+    else{
+        document.querySelector("#lvtime").textContent="Part Time"
+    }
+
+    document.querySelector("#lsalary").textContent="Salary : "
+    document.querySelector("#lvsalary").textContent=elem.remuneration.MinimumRange+" - "+elem.remuneration.MaximumRange
+
+    document.querySelector("#lcdate").textContent="Apply Before Date : "
+    document.querySelector("#lvcdate").textContent=elem['CloseDate']
+
+    document.querySelector("#lurl").textContent="Apply Here : "
+    document.querySelector("#lvurl").textContent=elem['applyUrl']
+
+}
 
 function Search(props) {
     const displayStateData = () => {
@@ -176,7 +209,7 @@ function Search(props) {
         const date = elem['CloseDate']
         const url = elem['applyUrl']
         valueDiv.push(
-          <tr className="searchRows"><td className="searchCol">{title}</td><td className="searchCol">{city}</td><td className="searchCol"><a href={url}>Apply Link</a></td><td className="searchCol">{date}</td></tr>
+          <tr className="searchRows" onClick={() => showDetails(elem)}><td className="searchCol">{title}</td><td className="searchCol">{city}</td><td className="searchCol"><a href={url}>Apply Link</a></td><td className="searchCol">{date}</td></tr>
             )
      
     })
@@ -191,7 +224,7 @@ function Search(props) {
     return(
         <div className="tableDetails container-flow" >
             <div className="row">
-                <div className="searchTable col-4">
+                <div className="searchTable col-md-4">
                     <table className = "srTb">
                         <thead>
                             <tr>
@@ -203,6 +236,42 @@ function Search(props) {
                         </thead>    
                         <tbody className="displayed" id="tableId">{displayStateData()} </tbody>
                     </table>
+                </div>
+                <div className="Details col-md-8">
+                    <div>
+                        <div className="row">
+                            <label className="labelsK" for="htitle" id="ltitle"></label>
+                            <label className="labelsV" for="vtitle" id="lvtitle"></label>
+                        </div>
+                        <div className="row">
+                            <label className="labelsK" for="hcity" id="lcity"></label>
+                            <label className="labelsV" for="vcity" id="lvcity"></label>
+                        </div>
+                        <div className="row">
+                            <label className="labelsK" for="htime" id="ltime"></label>
+                            <label className="labelsV" for="vtime" id="lvtime"></label>
+                        </div>
+                        <div className="row">
+                            <label className="labelsK" for="hsalary" id="lsalary"></label>
+                            <label className="labelsV" for="vsalary" id="lvsalary"></label>
+                        </div>
+                        <div className="row">
+                            <label className="labelsK" for="hcdate" id="lcdate"></label>
+                            <label className="labelsV" for="vcdate" id="lvcdate"></label>
+                        </div>
+                        <div className="row">
+                            <label className="labelsK" for="hsummary" id="lsummary"></label>
+                            <label className="labelsV" for="vsummary" id="lvsummary"></label>
+                        </div>
+                        <div className="row">
+                            <label className="labelsK" for="hduties" id="lduties"></label>
+                            <label className="labelsV" for="vsuties" id="lvduties"></label>
+                        </div>
+                        <div className="row">
+                            <label className="labelsK" for="hurl" id="lurl"></label>
+                            <a className="labelsVurl" for="vurl" id="lvurl"></a>
+                        </div>
+                    </div>               
                 </div>
             </div>
         </div>

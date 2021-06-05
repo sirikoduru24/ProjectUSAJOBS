@@ -19,6 +19,7 @@ export default async function getData(extension) {
   let searchResults = dataDict.SearchResult.SearchResultItems
   searchResults.forEach(element => {
       let dict = {}
+      console.log(element)
       dict['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
       dict['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
       dict['cityName'] = element.MatchedObjectDescriptor.PositionLocation[0]['CityName']
@@ -27,6 +28,8 @@ export default async function getData(extension) {
       dict['jobType'] = element.MatchedObjectDescriptor.PositionSchedule[0]['Code']
       dict['CloseDate'] = element.MatchedObjectDescriptor.ApplicationCloseDate
       dict['hiringPath'] = element.MatchedObjectDescriptor.UserArea.Details.HiringPath
+      dict['summary']=element.MatchedObjectDescriptor.UserArea.Details.JobSummary
+      dict['duties']=element.MatchedObjectDescriptor.UserArea.Details.MajorDuties
       
       jobs.push(dict)
   });
