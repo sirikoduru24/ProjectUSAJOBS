@@ -69,7 +69,6 @@
 label {
   display: inline-block;
   margin-bottom: 4px;
-  color: #fff;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -91,13 +90,7 @@ label {
   border-radius: .25rem;
 }
 
-body{
-  /*background-image: url('./Components/416d5b84b159d4b9f4ee671848eaa78f.jpg');*/
-  background: linear-gradient(336deg, maroon, navy 75%);
-}
-
 .place{
-  color: rgb(146, 187, 219);
   margin-left: auto;
   margin-right: auto;
   width: auto;  
@@ -117,7 +110,7 @@ body{
 }
 
 .navbar{
-  background-color: transparent;
+  background: linear-gradient(336deg, maroon, rgb(0, 0, 54) 35%);
 }
 
 .navbar-brand {
@@ -129,11 +122,11 @@ body{
 }
 
 .links:hover{
-  color: #61dafb !important;
+  color: #6197fb !important;
 }
 
 .links {
-  color: white;
+  color:  rgb(1, 30, 53);
   padding: 10px;
 }
 

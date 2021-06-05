@@ -53,6 +53,11 @@ export default function LineChart(props) {
         },
     };
     const options = {
+      legend: {
+        labels: {
+          fontColor:'blue'
+        }
+      },
         scales: {
           yAxes: [
             {
