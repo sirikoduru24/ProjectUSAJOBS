@@ -223,7 +223,7 @@ function Search(props) {
                    
 
     return(
-        <div className="tableDetails container-flow" >
+        <div className="tableDetails container-fluid" >
             <div className="row">
                 <div className="searchTable col-md-4">
                     <table className = "srTb">
@@ -238,7 +238,7 @@ function Search(props) {
                         <tbody className="displayed" id="tableId">{displayStateData()} </tbody>
                     </table>
                 </div>
-                <div className="Details col-md-8">
+                <div className="Details col-md-8 col-sm-12 col-xs-12">
                     <div>
                         <div className="row">
                             <label className="labelsK" for="htitle" id="ltitle"></label>
