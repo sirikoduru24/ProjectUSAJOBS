@@ -123,11 +123,18 @@ label {
 
 .links:hover{
   color: #6197fb !important;
+  text-decoration: none !important;
+}
+
+.links:active{
+  color: #6197fb !important;
+  text-decoration: none !important;
 }
 
 .links {
   color:  white;
   padding: 10px;
+  text-decoration: none !important;
 }
 
 .navbar-toggler {
@@ -161,4 +168,9 @@ label {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+}
+
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
 }

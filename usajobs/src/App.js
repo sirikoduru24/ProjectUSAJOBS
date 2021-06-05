@@ -397,6 +397,10 @@ function App() {
             <FilterForSearch setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)} statedata={allStatesData}/>
           </div>
             <div>
+            {(!jobData) && (
+            <div class = "loaderProperties">
+            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                </div>)}
             {searchFilterData && (
             <Search searchFilterData={searchFilterData} jobData={jobData}></Search>
           )}
