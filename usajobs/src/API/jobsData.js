@@ -22,8 +22,10 @@ export default async function getData(extension) {
       console.log(element)
       dict['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
       dict['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
-      dict['cityName'] = element.MatchedObjectDescriptor.PositionLocation[0]['CityName']
-      dict['locations'] =  element.MatchedObjectDescriptor.PositionLocation[0]['CountrySubDivisionCode']
+      if(element.MatchedObjectDescriptor.PositionLocation[0] !== undefined) {
+        dict['cityName'] = element.MatchedObjectDescriptor.PositionLocation[0]['CityName']
+        dict['locations'] =  element.MatchedObjectDescriptor.PositionLocation[0]['CountrySubDivisionCode']
+      }
       dict['remuneration'] = element.MatchedObjectDescriptor.PositionRemuneration[0]
       dict['jobType'] = element.MatchedObjectDescriptor.PositionSchedule[0]['Code']
       dict['CloseDate'] = element.MatchedObjectDescriptor.ApplicationCloseDate
