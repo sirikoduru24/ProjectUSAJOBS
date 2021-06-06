@@ -49,12 +49,13 @@ const styles = {
   width: "500px"
 }
 
+/* Function Houses returns the Pie chart which shows the job fields according 
+   to the numbers in the USA 
+   The data is taken from USAjobs API and the required array is obtained from app.js */
 export default function Houses(props) {
   const renderFieldData = () =>{
     if(props.jobdata) {
 
-console.log("inside")
-      console.log(props.jobdata) 
       let fieldCountArray=[]
       let fieldNameArray=[]
       props.jobdata.forEach(element => {
@@ -100,7 +101,6 @@ console.log("inside")
 
   }
   
-
   
 }
 return <div class = "col-md-6"style={styles}> {renderFieldData()} </div>

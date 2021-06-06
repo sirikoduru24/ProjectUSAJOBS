@@ -48,6 +48,10 @@ const styles = {
   width: "450px",
 }
 
+/* Function StateChart returns the Donut chart which shows the job numbers 
+   according to the cities of the selected State 
+   The data is taken from USAjobs API and the required array is obtained from app.js */
+
 export default function StateChart(props) {
     const prepareChart = () => {
         

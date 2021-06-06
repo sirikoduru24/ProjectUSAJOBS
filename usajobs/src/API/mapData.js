@@ -1,3 +1,4 @@
+/* This function takes the data from highcharts maps API using axios and then returns it.*/
 import axios from "axios";
 
 function  mapData(extension) {

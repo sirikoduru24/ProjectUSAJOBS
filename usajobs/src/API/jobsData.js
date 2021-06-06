@@ -1,3 +1,5 @@
+/* This function takes all the required data from the usajobs api using fetch.
+It stores the required data into an array and returns it*/
 export default async function getData(extension) {
   var jobs = []
   var dataDict = {}
@@ -19,7 +21,6 @@ export default async function getData(extension) {
   let searchResults = dataDict.SearchResult.SearchResultItems
   searchResults.forEach(element => {
       let dict = {}
-      
       dict['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
       dict['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
       if(element.MatchedObjectDescriptor.PositionLocation[0] !== undefined) {

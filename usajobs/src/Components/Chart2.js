@@ -1,4 +1,3 @@
-import { stableSort } from "highcharts";
 import React from "react";
 import { Line, Pie } from "react-chartjs-2";
 
@@ -7,11 +6,13 @@ const styles = {
   width: "600px"
 }
 
+/* Function LineChart returns the Line chart which compares the minimum and maximum 
+   remuneration of job based of the each states.
+   The data is taken from USAjobs API and the required array is obtained from app.js */
+
 export default function LineChart(props) {
   const renderJobsData = () => {
     if(props.jobdata) {
-      console.log("inside")
-      console.log(props.jobdata) 
       let stateArray=[]
       let minArray=[]
       let maxArray=[]
@@ -77,7 +78,6 @@ export default function LineChart(props) {
           ],
         },
         tooltips: {
-          //mode: "label",
         },
         responsive: true,
         maintainAspectRatio: false,
