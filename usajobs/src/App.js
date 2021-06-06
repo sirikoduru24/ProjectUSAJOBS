@@ -374,7 +374,7 @@ function App() {
       <div class="navbar-collapse collapse" id="collapsingNavbarMd">
         <ul class="navbar-nav">
           <li class="nav-item">
-              <a class="nav-link" href="/"><h4 className="links">NATION WIDE JOBS DATA</h4></a>
+              <a class="nav-link" href="/home"><h4 className="links">NATION WIDE JOBS DATA</h4></a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="/stateMaps"><h4 className="links">STATE WIDE JOBS DATA</h4></a>
@@ -438,7 +438,7 @@ function App() {
             <PublicJobs hiringPaths={hiringPaths}></PublicJobs>
           </div>
         </Route>
-        <Route path="/">
+        <Route path="/home">
           <div class = "container-fluid">
             <div class = "row">
             {(!jobData) && (
