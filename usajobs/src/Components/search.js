@@ -34,6 +34,7 @@ function showDetails(elem){
 
     document.querySelector("#lurl").textContent="Apply Here : "
     document.querySelector("#lvurl").textContent=elem['applyUrl']
+    document.getElementById("lvurl").href=elem['applyUrl']
 
 }
 
