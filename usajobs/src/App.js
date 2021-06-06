@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import mapData from './API/mapData';
 import ShowTableData from "./Components/showTableData"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import LineChart from "./Components/Chart2";
 import Houses from "./Components/Chart1";
 import Fields from "./Components/statistics";
@@ -19,7 +19,7 @@ import Search from "./Components/search"
 import Loader from "react-loader-spinner";
 
 function App() {
-
+  //Taking all the constants to store data
   const [jobData,setJobsData] = useState()
   const [mapsData,setMapsData] = useState()
   const [jobTypeData, setJobTypeData] = useState()
@@ -40,18 +40,20 @@ function App() {
 
 
   useEffect( () => {
+    /* This function is to get the job data from jobsData.js as an array*/
     const getJobsData = async () => {
       const data1 = await jobsData('Page=1&ResultsPerPage=1000')
       const data2 = await jobsData('Page=2&ResultsPerPage=1000')
       const data3 = await jobsData('Page=3&ResultsPerPage=1000')
       let res = data1.concat(data2,data3)
-      console.log("Main:",res)
       setJobsData(res)
     }
     getJobsData()
   },[])
 
   useEffect( () => {
+    /*This function is to get remunerations from all the jobs based on states. 
+    This function returns a dictionary of state name, minimum remuneration and maximum remuneration.*/
     const getRemunerations = async () => {
       let jobsCountArray = []
       if (jobData){
@@ -80,7 +82,6 @@ function App() {
   };
   
   const groupByCity = groupBy(jobsCountArray, 'countryCode');
-  console.log('Group',groupByCity)
   let finalArr = []
   for(const [key,value] of Object.entries(groupByCity)) {
     let min = 1000000, max = 0
@@ -99,7 +100,6 @@ function App() {
     finalArr.push(dict)
 
       }
-      console.log("finalarr:", finalArr)
       setRemunerationData(finalArr)
     }}
     getRemunerations()
@@ -108,6 +108,9 @@ function App() {
 
   
   useEffect( () => {
+    /* This function is to get data according to the fields.
+    Here each field is mapped with a count of number of jobs available in that field and is returned as
+    an array.*/
     const getFieldData = async () => {
       if(jobData) {
         const groupBy = (array, key) => {
@@ -162,7 +165,6 @@ function App() {
           dict['Field6'] = count6
           dict['Field7'] = count7
           dict['Field8'] = count8
-          console.log("check this:", dict)
           if(count1 > 0 )
           {
             dict['FieldName1'] = "Military Services"
@@ -204,12 +206,9 @@ function App() {
     getFieldData()
   },[jobData])
     
-  
-  
-    
-
-  
   useEffect( () => {
+    /* This function is to get job by type either full time or part-time.
+    Here the dictionary of statename, count of full-time and part-time jobs in that state are returned.*/
     const getJobsByType = async () => {
       if(jobData) {
         const groupBy = (array, key) => {
@@ -312,7 +311,6 @@ function App() {
           }, {});
         };
         const byStates = groupBy(jobData, 'locations');
-        console.log(byStates)
         setGroupedByStates(byStates)
       }
     }
