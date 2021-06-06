@@ -7,6 +7,15 @@ const styles = {
   width: '600px'
 }
 
+/**
+ * PublicJobs()
+ * This function takes input from hiringPath data,
+ * sent from the app.js using props, and store data 
+ * as state and respective count of total number 
+ * of public hiring jobs and display Bar Graph 
+ * param {*} props 
+ * returns Bar component
+ */
 function PublicJobs(props) {
   const options = {
     legend: {
@@ -55,7 +64,6 @@ function PublicJobs(props) {
         stateName.push(stateData[i].state)
         Pcount.push(stateData[i].PublicJobs)
       }
-      console.log("Hey There! ", stateName, Pcount)
       const data = {
           labels: stateName,
           datasets: [

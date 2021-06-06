@@ -7,6 +7,13 @@ const styles = {
   width: '600px'
 }
 
+/**
+ * Fields()
+ * This function is used to export a bar graph 
+ * based on Job timings.
+ * param {*} props 
+ * returns Bar Component
+ */
 function Fields(props) {
   const options = {
     legend: {
@@ -48,11 +55,17 @@ function Fields(props) {
     },
 }
 
+  /**
+   * displayJobTime()
+   * This function receives Job type data from app.js,
+   * using props, saves data as state and count of part time
+   * jobs and full time jobs, and displays in Bar graph
+   * returns Bar Graph
+   */
   const displayJobTime = () => {
     if(props.jobTypeData) {
-      console.log("Rucha jobTypeData: ", props.jobTypeData)
       let stateData = props.jobTypeData
-      console.log("Rucha : ", stateData)
+      
       const stateName=[]
       const FTcount=[]
       const PTcount=[]
@@ -61,7 +74,6 @@ function Fields(props) {
         FTcount.push(stateData[i].FullTime)
         PTcount.push(stateData[i].PartTime)
       }
-      console.log("Hey There! ", stateName, FTcount, PTcount)
       const data = {
           labels: stateName,
           datasets: [

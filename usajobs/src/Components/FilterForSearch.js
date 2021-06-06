@@ -1,5 +1,11 @@
 import './search.css'
 
+/**
+ * getSelectedValues() reads user entered values,
+ * store them as key and value and return to serach tag.
+ * param : {*} props 
+ * returns : filter values
+ */
 function getSelectedValue(props) {
     let filters = {}
     let state = document.getElementById("statedd").value;
@@ -8,8 +14,7 @@ function getSelectedValue(props) {
     let field = document.getElementById("fielddd").value;
     let partTime = document.getElementById("part-time").value
     let fullTime = document.getElementById("full-time").value;
-    //let disabilityYes = document.getElementById("dyes").value;
-    console.log("Selected Filters: ",state,minSalary, maxSalary, field, partTime, fullTime)
+
     filters['state']=state;
     if(state === "None"){
         return alert("State required")
@@ -39,10 +44,14 @@ function getSelectedValue(props) {
         filters['fullTime'] = fullTime;
     }
     
-    console.log(filters)
     return filters;
 }
 
+/**
+ * clearFilters()
+ * reset button will call this function 
+ * and clear all user input values
+ */
 function clearFilters() {
     document.getElementById("statedd").value = "";
     document.getElementById("minsalary").value = "";
@@ -52,6 +61,15 @@ function clearFilters() {
     document.getElementById("full-time").checked = false;
 }
 
+
+/**
+ * FilterForSearch()
+ * This function displays filters, 
+ * retrive state names, field values and display in dropdown,
+ * user suppose to enter or select values and Apply filters.
+ * param {*} props 
+ * returns state names
+ */
 function FilterForSearch(props) {
     const showStates = () => {
         if(props.statedata) {
@@ -107,5 +125,6 @@ function FilterForSearch(props) {
     </div>
     )
 }
+
 export default FilterForSearch
 
