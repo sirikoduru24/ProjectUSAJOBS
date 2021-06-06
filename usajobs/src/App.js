@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import mapData from './API/mapData';
 import ShowTableData from "./Components/showTableData"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import LineChart from "./Components/Chart2";
 import Houses from "./Components/Chart1";
 import Fields from "./Components/statistics";
@@ -374,16 +374,16 @@ function App() {
       <div class="navbar-collapse collapse" id="collapsingNavbarMd">
         <ul class="navbar-nav">
           <li class="nav-item">
-              <a class="nav-link" href="/home"><h4 className="links">NATION WIDE JOBS DATA</h4></a>
+              <Link to="/home"><h4 className="links">NATION WIDE JOBS DATA</h4></Link>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/stateMaps"><h4 className="links">STATE WIDE JOBS DATA</h4></a>
+              <Link to="/stateMaps"><h4 className="links">STATE WIDE JOBS DATA</h4></Link>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/search"><h4 className="links">SEARCH</h4></a>
+              <Link to="/search"><h4 className="links">SEARCH</h4></Link>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/statistics"><h4 className="links">STATISTICS</h4></a>
+              <Link to="/statistics"><h4 className="links">STATISTICS</h4></Link>
           </li>
       </ul>
   </div>
