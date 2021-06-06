@@ -244,6 +244,8 @@ function App() {
   },[jobData])
   
   useEffect( () => {
+    /* This function is to take mapsdata from API maps and 
+    *  then store it in maps data using set state.*/
     const getMapsData = async () => {
       const data = await mapData("countries/us/us-all.geo.json")
       setMapsData(data)
@@ -252,6 +254,10 @@ function App() {
   },[])
 
   useEffect( () => {
+    /**
+     *This function works on all data and 
+     * store count of public hiring path jobs per state.
+     */
     const getHiringPaths = async () => {
       if(jobData){
         const groupBy = (array, key) => {
@@ -286,6 +292,7 @@ function App() {
   },[jobData])
   
   useEffect( () => {
+    /* This function gets all data from Maps and stores state names.*/
     const allStatesInfo = async () => {
       if(mapsData) {
         let data = mapsData.data
@@ -300,6 +307,10 @@ function App() {
   },[mapsData])
   
   useEffect( () => {
+    /*
+    *This function works on all data 
+    * and group available jobs by state names. 
+    */
     const groupByStates = () => {
       if(jobData) {
         const groupBy = (array, key) => {
@@ -318,6 +329,10 @@ function App() {
   },[jobData])
 
   useEffect( () => {
+    /*
+    *This function works on a data which is grouped by state
+    * and sort jobs by city names, and available jobs per city.
+    */
     const sortElementsByCity = () => {
       if(groupedByStates && filterData) {
         const jobs = groupedByStates[filterData]
