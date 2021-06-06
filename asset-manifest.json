@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ProjectUSAJOBS/static/css/main.b0df8290.chunk.css",
-    "main.js": "/ProjectUSAJOBS/static/js/main.f8fee00b.chunk.js",
-    "main.js.map": "/ProjectUSAJOBS/static/js/main.f8fee00b.chunk.js.map",
+    "main.js": "/ProjectUSAJOBS/static/js/main.0e1badcb.chunk.js",
+    "main.js.map": "/ProjectUSAJOBS/static/js/main.0e1badcb.chunk.js.map",
     "runtime-main.js": "/ProjectUSAJOBS/static/js/runtime-main.ea64d90c.js",
     "runtime-main.js.map": "/ProjectUSAJOBS/static/js/runtime-main.ea64d90c.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/ProjectUSAJOBS/static/css/2.4c97ca4f.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.3a4d5d66.chunk.js",
     "static/css/main.b0df8290.chunk.css",
-    "static/js/main.f8fee00b.chunk.js"
+    "static/js/main.0e1badcb.chunk.js"
   ]
 }
