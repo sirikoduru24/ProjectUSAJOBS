@@ -1,12 +1,11 @@
 import React from "react";
-import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './search.css'
-import $ from 'jquery'
 
+/* Function showDetails displays the job's complete details 
+   when the user clicks on the job row which is returned by function Search */
 function showDetails(elem){
 
-    console.log(elem);
     document.querySelector("#ltitle").textContent="Job Title : "
     document.querySelector("#lvtitle").textContent=elem['positionTitle']
 
@@ -38,24 +37,21 @@ function showDetails(elem){
 
 }
 
+/* Function Search displays the jobs which matches the filter inputs
+   These inputs are given by the user
+   This function also has error handling for the filters */ 
+
 function Search(props) {
     const displayStateData = () => {
     if(props.jobData){
-    //console.log(props.searchFilterData)
-    //console.log(props.jobData)
     const filter = props.searchFilterData
     const jobData = props.jobData
-    const sd = props.jobData
-
-    console.log(Object.keys(filter))
     const filterNames=Object.keys(filter)
 
     const searchList = []
     
-
     jobData.forEach(job => {
         if((filter.state !== "None") && (job.locations === filter.state)){
-            console.log(filter.state, job.locations)
                   if(filterNames.includes("minSalary")) { 
                     if(Number(job.remuneration.MinimumRange) >= Number(filter.minSalary)) {
                         if(filterNames.includes("maxSalary")){
@@ -63,7 +59,6 @@ function Search(props) {
                                         if(filterNames.includes("field")){
                                             if(filter.field === "Military Services"){
                                                 if(job.positionTitle.includes("Military")){
-                                                    console.log(job)
                                                     if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
                                                         if((filterNames.includes("fullTime")) && (job.jobType==="1")){
                                                             searchList.push(job);
@@ -82,7 +77,7 @@ function Search(props) {
                                             }  
                                             else if(filter.field === "Medical Services"){
                                                 if(job.positionTitle.includes("Medicine") || job.positionTitle.includes("Nurse")){
-                                                    console.log(job)
+                                                    
                                                     if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
                                                         if((filterNames.includes("fullTime")) && (job.jobType==="1")){
                                                             searchList.push(job);
@@ -99,7 +94,7 @@ function Search(props) {
                                             }  
                                             else if(filter.field === "Finance and Accounting"){
                                                 if(job.positionTitle.includes("Accounting") || job.positionTitle.includes("Finance") || job.positionTitle.includes("Financial")){
-                                                    console.log(job)
+                                                    
                                                     if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
                                                         if((filterNames.includes("fullTime")) && (job.jobType==="1")){
                                                             searchList.push(job);
@@ -116,7 +111,7 @@ function Search(props) {
                                             } 
                                             else if(filter.field === "Engineering"){
                                                 if(job.positionTitle.includes("IT") || job.positionTitle.includes("Engineer") || job.positionTitle.includes("Engineering") ){
-                                                    console.log(job)
+                                                    
                                                     if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
                                                         if((filterNames.includes("fullTime")) && (job.jobType==="1")){
                                                             searchList.push(job);
@@ -133,7 +128,7 @@ function Search(props) {
                                             } 
                                             else if(filter.field === "Food Industry"){
                                                 if(job.positionTitle.includes("Cook") || job.positionTitle.includes("Food")){
-                                                    console.log(job)
+                                                    
                                                     if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
                                                         if((filterNames.includes("fullTime")) && (job.jobType==="1")){
                                                             searchList.push(job);
@@ -152,7 +147,7 @@ function Search(props) {
                                                 if(job.positionTitle.includes("Cook") || job.positionTitle.includes("Food") || job.positionTitle.includes("IT") || job.positionTitle.includes("Engineer") || job.positionTitle.includes("Engineering") || 
                                                 job.positionTitle.includes("Accounting") || job.positionTitle.includes("Finance") || job.positionTitle.includes("Financial") ||
                                                 job.positionTitle.includes("Medicine") || job.positionTitle.includes("Nurse") || job.positionTitle.includes("Military")){
-                                                    console.log("Dont get in");
+                                                    
                                                 }
                                                 else
                                                 {
@@ -201,8 +196,7 @@ function Search(props) {
             }
         
     });
-    console.log("Filtered Jobs : ",searchList)
-    console.log("")
+    
     let valueDiv = []
     searchList.forEach(elem => { 
         const title = elem['positionTitle']
@@ -214,7 +208,6 @@ function Search(props) {
             )
      
     })
-    console.log()
     
     return valueDiv
     }
@@ -278,9 +271,6 @@ function Search(props) {
         </div>
     )
 }
-
-
-
 
 export default Search;
 
