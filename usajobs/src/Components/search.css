@@ -134,6 +134,9 @@ th.col{
     word-wrap: normal;
 }
 
+#lvurl{
+    color: navy;
+}
 
 .Details{
     height: 420px;
