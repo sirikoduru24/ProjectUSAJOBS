@@ -1,3 +1,11 @@
+/*
+This function is for returning the Maps as a highchart. So here we take the Maps data from the API,
+join all the states using postal code, give all the options for the map and then return it.
+The map data is got from App.js.
+On hovering over each state of the map we display the job count.
+To do this we get the jobs data from the usajobs API from App.js and for each state 
+we get the count of jobs, that count is displayed on hovering over each state.
+ */
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -42,7 +50,6 @@ function Maps(props) {
       layout: "horizontal",
       valueDecimals: 0,
       backgroundColor:
-        // theme
         (Highcharts.defaultOptions &&
           Highcharts.defaultOptions.legend &&
           Highcharts.defaultOptions.legend.backgroundColor) ||
@@ -65,20 +72,11 @@ function Maps(props) {
         cursor: "pointer",
         joinBy: "postal-code",
         data: [],
-        point: {
-          events: {
-            click: function (r) {
-              console.log("click - to open popup as 2nd step");
-              console.log(r,this.code);
-            }
-          }
-        }
       }
     ]
   };
   const renderMapsData = () => {
     if(props.mapdata && props.jobdata) {
-      console.log(props.jobdata)
       options.series[0].data = [];
       options["chart"]["map"] = props.mapdata.data;
       let x = props.jobdata
@@ -88,7 +86,6 @@ function Maps(props) {
             k['countryCode'] = element.locations
               dataDict.push(k)
           });
-          console.log('Data :',dataDict)
           const items = dataDict.reduce((total, item) => {
             total.hasOwnProperty(item.countryCode)
               ? total[item.countryCode]++
@@ -96,13 +93,11 @@ function Maps(props) {
         
             return total;
           }, {});
-          console.log('Items:',items)
           for (let i in props.mapdata.data["features"]) {
             let mapInfo = props.mapdata.data["features"][i];
             if (mapInfo["id"]) {
               var postalCode = mapInfo.properties["postal-code"];
               var name = mapInfo["properties"]["name"];
-              console.log('Name',name)
               var code = mapInfo["properties"]["hc-key"]
               var value = items[name];
               var row = i;

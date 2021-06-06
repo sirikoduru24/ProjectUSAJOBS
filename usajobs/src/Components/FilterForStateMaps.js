@@ -1,7 +1,8 @@
+/*This function creates filter for state search which has all the names of states as input and then 
+exports a select dropdown along with names of states.*/
 function FilterForStateMaps(props) {
     const renderFilteredData = () => {
         if(props.statedata) {
-            console.log(props.statedata)
             const filterRows = props.statedata.map((elem) => {
                 return <option value = {elem}>{elem}</option>
             })

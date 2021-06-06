@@ -1,14 +1,18 @@
+/* This function is to display the state data table when a user clicks on State wide data tab.
+This table has a data of state name along with the count of jobs in each state.
+When a row of the table is clicked then jobs in that particular clicked city of state is displayed.
+Here the job title and application close date of the job are displayed.
+The statewide data is got grouped by states from App.js and the data here is used for displaying.
+*/
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/js/src/collapse.js";
-import { Table } from "react-bootstrap";
 import "./StateData.css"
 
 function StateData(props) {
     const displayStateData = () => {
             const renderStateData = () => {
                 if(props.citiesData) {
-                    console.log(props.citiesData)
                     const results = () => {
                     let res = []
                     let index = 0
@@ -20,7 +24,6 @@ function StateData(props) {
                         let controls = ".multiCollapseExample"+index
                         value.forEach((elem) => {
                             const title = elem['positionTitle']
-                            //const url = elem['applyUrl']
                             const date = elem['CloseDate']
                             valueDiv.push(
                                 <tr className="cityRows"><td className="cityCol">{title}</td><td className="cityCol">{date}</td></tr>)
@@ -52,8 +55,7 @@ function StateData(props) {
                 arr.push(<tbody>{results()}</tbody>)
                     return arr
                          
-                }
-               
+                }               
         }
             return(
             renderStateData()
