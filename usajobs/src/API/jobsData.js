@@ -1,16 +1,10 @@
-/**
- * getData() function fetches data from api.
- * Reads json data and store required fields in dictionary.
- * @param {*} extension 
- * @returns allJobs[]
- */
+/* This function takes all the required data from the usajobs api using fetch.
+It stores the required data into an array and returns it*/
 export default async function getData(extension) {
-  var allJobs = []
-  var apiData = {}
+  var jobs = []
+  var dataDict = {}
   const baseURL = 'https://data.usajobs.gov/api/Search?'
-
-  try {
-    const response = await fetch(baseURL+extension, {
+  const response = await fetch(baseURL+extension, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -19,32 +13,28 @@ export default async function getData(extension) {
           "User-Agent": 'larris2@pdx.edu',          
           "Authorization-Key": 'LEiaFk9ZPCJKAet/KJYUgT4TVlBoImmw8V0Fh0ZTT20='
         },
-    })
-
-    let data = await response.json();
-    for (const [key, value] of Object.entries(data)) {
-      apiData[key] = value
+  })
+  let data = await response.json();
+  for (const [key, value] of Object.entries(data)) {
+      dataDict[key] = value
     }
-    let searchResults = apiData.SearchResult.SearchResultItems
-    searchResults.forEach(element => {
-      let job = {}
-      job['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
-      job['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
+  let searchResults = dataDict.SearchResult.SearchResultItems
+  searchResults.forEach(element => {
+      let dict = {}
+      dict['positionTitle'] = element.MatchedObjectDescriptor.PositionTitle
+      dict['applyUrl'] = element.MatchedObjectDescriptor.PositionURI
       if(element.MatchedObjectDescriptor.PositionLocation[0] !== undefined) {
-        job['cityName'] = element.MatchedObjectDescriptor.PositionLocation[0]['CityName']
-        job['locations'] =  element.MatchedObjectDescriptor.PositionLocation[0]['CountrySubDivisionCode']
+        dict['cityName'] = element.MatchedObjectDescriptor.PositionLocation[0]['CityName']
+        dict['locations'] =  element.MatchedObjectDescriptor.PositionLocation[0]['CountrySubDivisionCode']
       }
-      job['remuneration'] = element.MatchedObjectDescriptor.PositionRemuneration[0]
-      job['jobType'] = element.MatchedObjectDescriptor.PositionSchedule[0]['Code']
-      job['CloseDate'] = element.MatchedObjectDescriptor.ApplicationCloseDate
-      job['hiringPath'] = element.MatchedObjectDescriptor.UserArea.Details.HiringPath
-      job['summary']=element.MatchedObjectDescriptor.UserArea.Details.JobSummary
-      job['duties']=element.MatchedObjectDescriptor.UserArea.Details.MajorDuties
+      dict['remuneration'] = element.MatchedObjectDescriptor.PositionRemuneration[0]
+      dict['jobType'] = element.MatchedObjectDescriptor.PositionSchedule[0]['Code']
+      dict['CloseDate'] = element.MatchedObjectDescriptor.ApplicationCloseDate
+      dict['hiringPath'] = element.MatchedObjectDescriptor.UserArea.Details.HiringPath
+      dict['summary']=element.MatchedObjectDescriptor.UserArea.Details.JobSummary
+      dict['duties']=element.MatchedObjectDescriptor.UserArea.Details.MajorDuties
       
-      allJobs.push(job)
-    });
-  return allJobs;
-  } catch {
-    console.error("Error fetching data");
-  }
+      jobs.push(dict)
+  });
+return jobs
 }
