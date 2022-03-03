@@ -1,4 +1,3 @@
-/* This function takes the data from highcharts maps API using axios and then returns it.*/
 /**
  * mapData() function fetches data from highcharts.
  * This data is being used to display USA maps on dashboard.
