@@ -65,19 +65,19 @@ function Fields(props) {
       let stateData = props.jobTypeData
       
       const stateName=[]
-      const FTcount=[]
-      const PTcount=[]
+      const FullTimeCount=[]
+      const PartTimeCount=[]
       for(let i=0; i<stateData.length; i++){
         stateName.push(stateData[i].state)
-        FTcount.push(stateData[i].FullTime)
-        PTcount.push(stateData[i].PartTime)
+        FullTimeCount.push(stateData[i].FullTime)
+        PartTimeCount.push(stateData[i].PartTime)
       }
       const data = {
           labels: stateName,
           datasets: [
             {
               label: "Full Time",
-              data: FTcount,
+              data: FullTimeCount,
               fill: false,
               backgroundColor: "magenta",
               borderColor: "red",
@@ -85,7 +85,7 @@ function Fields(props) {
             },
             {
               label: "Part Time",
-              data: PTcount,
+              data: PartTimeCount,
               fill: false,
               backgroundColor: "green",
               borderColor: "pink",
