@@ -8,12 +8,11 @@ const styles = {
 }
 
 /**
- * Fields()
- * This function is used to export a bar graph 
- * based on Job timings.
+ * The  Fields function is used to export a bar graph which reflects from job timings
  * param {*} props 
  * returns Bar Component
  */
+
 function Fields(props) {
   const options = {
     legend: {
@@ -54,11 +53,10 @@ function Fields(props) {
       fontSize: 28,
     },
 }
-
   /**
    * displayJobTime()
-   * This function receives Job type data from app.js,
-   * using props, saves data as state and count of part time
+   * The function displayJobTime() gets the job type data from app.js file and 
+   * it uses props, saves data as state and count of part time
    * jobs and full time jobs, and displays in Bar graph
    * returns Bar Graph
    */
