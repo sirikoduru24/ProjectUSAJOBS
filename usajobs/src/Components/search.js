@@ -21,6 +21,7 @@ function showDetails(elem){
     document.querySelector("#lvduties").textContent=elem['duties']
 
     document.querySelector("#ltime").textContent="Job Time : "
+
     if(elem['jobType']==="1"){
         document.querySelector("#lvtime").textContent="Full Time"
     }
@@ -45,6 +46,7 @@ function showDetails(elem){
     The function has multiple error handling for the filters. */
 
 function Search(props) {
+
     const displayStateData = () => {
     if(props.jobData){
     const filterData = props.searchFilterData
@@ -54,6 +56,7 @@ function Search(props) {
     const searchResult = []
     
     jobData.forEach(job => {
+
         if((filterData.state !== "None") && (job.locations === filterData.state)){
                   if(filterNamesData.includes("minSalary")) { 
                     if(Number(job.remuneration.MinimumRange) >= Number(filterData.minSalary)) {
@@ -234,6 +237,7 @@ function Search(props) {
                         <tbody className="displayed" id="tableId">{displayStateData()} </tbody>
                     </table>
                 </div>
+                
                 <div className="Details col-md-8 col-sm-12 col-xs-12">
                     <div>
                         <div className="row">
