@@ -8,9 +8,11 @@ The data is gathered from the API USAJobs. The app.js returns the needed jobs ar
 After the data is returned, the job count for each state is calculated by grouping the state.
 Finally, it counts the maximum and minimum remuneration for each state.
 */
+
 import React from "react";
     
 function ShowTableData(props) {
+
     const renderJobsData = () => {
         if(props.jobdata) {
             let data = props.jobdata;
@@ -18,15 +20,14 @@ function ShowTableData(props) {
             data.forEach(element => {
                     let storeData = {}
                     storeData['countryCode'] = element.locations
-                    let maxRem = parseFloat(element.remuneration.MaximumRange)
-                    let minRem = parseFloat(element.remuneration.MinimumRange)
+                    let maxRemuneration = parseFloat(element.remuneration.MaximumRange)
+                    let minRemuneration = parseFloat(element.remuneration.MinimumRange)
                     if(element.remuneration.RateIntervalCode === "Per Hour") {
-                        minRem = minRem*8*30*12
-                        maxRem = maxRem*8*30*12
+                        minRemuneration = minRemuneration*8*30*12
+                        maxRemuneration = maxRemuneration*8*30*12
                     }
-                    storeData['minRem'] = Math.floor(minRem)
-                    storeData['maxRem'] = Math.floor(maxRem)
-                    
+                    storeData['minRemuneration'] = Math.floor(minRemuneration)
+                    storeData['maxRemuneration'] = Math.floor(maxRemuneration)
                     jobsCountArray.push(storeData)
             });
             
@@ -40,38 +41,40 @@ function ShowTableData(props) {
               };
               
             const groupByCity = groupBy(jobsCountArray, 'countryCode');
-            let finalArr = []
+            let finalArray = []
             for(const [key,value] of Object.entries(groupByCity)) {
                 let min = 1000000, max = 0
                 value.forEach(elem => {
-                    if(min > elem.minRem) {
-                        min = elem.minRem
+                    if(min > elem.minRemuneration) {
+                        min = elem.minRemuneration
                     }
-                    if(max < elem.maxRem) {
-                        max = elem.maxRem
+                    if(max < elem.maxRemuneration) {
+                        max = elem.maxRemuneration
                     }
                 });
                 let storeData = {}
                 storeData['state'] = key
                 storeData['jobCount'] = value.length
-                storeData['minRem'] = min
-                storeData['maxRem'] = max
-                finalArr.push(storeData)
+                storeData['minRemuneration'] = min
+                storeData['maxRemuneration'] = max
+                finalArray.push(storeData)
             }
-            finalArr.sort((a, b) => (a.state > b.state) ? 1 : -1)
-            const rows = finalArr.map((elem) => {
+            finalArray.sort((a, b) => (a.state > b.state) ? 1 : -1)
+
+            const rows = finalArray.map((elem) => {
                 return(
                     <tr className="tbRows">
                         <td className="tbCol">{elem.state}</td>
                         <td className="tbCol">{elem.jobCount}</td>
-                        <td className="tbCol">{elem.minRem}</td>
-                        <td className="tbCol">{elem.maxRem}</td>
+                        <td className="tbCol">{elem.minRemuneration}</td>
+                        <td className="tbCol">{elem.maxRemuneration}</td>
                     </tr>
                 )
             })
             return rows
         }
     }
+    
     return (
         <div>
             {props.jobdata && (<table class = "place">
