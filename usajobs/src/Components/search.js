@@ -2,8 +2,10 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './search.css'
 
-/* Function showDetails displays the job's complete details 
-   when the user clicks on the job row which is returned by function Search */
+/* 
+When the user clicks on the job information row which is returned by function Search
+then the function showDetails displays all the details related to the clicked job row.
+ */
 function showDetails(elem){
 
     document.querySelector("#ltitle").textContent="Job Title : "
@@ -38,9 +40,9 @@ function showDetails(elem){
 
 }
 
-/* Function Search displays the jobs which matches the filter inputs
-   These inputs are given by the user
-   This function also has error handling for the filters */ 
+/* Function Search take the filter inputs given by the user and displays 
+    the jobs which fits with the filter inputs.
+    The function has multiple error handling for the filters. */
 
 function Search(props) {
     const displayStateData = () => {
