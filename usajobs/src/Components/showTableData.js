@@ -1,12 +1,12 @@
 /*
-This function ShowTableData displays all the data for 
-1. names of states
-2. count of jobs in each state 
-3. minimum and maximum remuneration of each state
+The function ShowTableData in this file will display all the data for 
+1. State names
+2. Job count in the respective State
+3. Minimum and the maximum remuneration for the each State.
 
-Here the data is got from usajobs API and from app.js the required jobs array is returned.
-From the returned data the count of jobs is calculate grouping by states.
-The maximum and minimum remuneration state wise is calculated.
+The data is gathered from the API USAJobs. The app.js returns the needed jobs array.
+After the data is returned, the job count for each state is calculated by grouping the state.
+Finally, it counts the maximum and minimum remuneration for each state.
 */
 import React from "react";
     
