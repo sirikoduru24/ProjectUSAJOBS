@@ -16,18 +16,18 @@ function ShowTableData(props) {
             let data = props.jobdata;
             let jobsCountArray = []
             data.forEach(element => {
-                    let dict = {}
-                    dict['countryCode'] = element.locations
+                    let storeData = {}
+                    storeData['countryCode'] = element.locations
                     let maxRem = parseFloat(element.remuneration.MaximumRange)
                     let minRem = parseFloat(element.remuneration.MinimumRange)
                     if(element.remuneration.RateIntervalCode === "Per Hour") {
                         minRem = minRem*8*30*12
                         maxRem = maxRem*8*30*12
                     }
-                    dict['minRem'] = Math.floor(minRem)
-                    dict['maxRem'] = Math.floor(maxRem)
+                    storeData['minRem'] = Math.floor(minRem)
+                    storeData['maxRem'] = Math.floor(maxRem)
                     
-                    jobsCountArray.push(dict)
+                    jobsCountArray.push(storeData)
             });
             
             const groupBy = (array, key) => {
@@ -51,12 +51,12 @@ function ShowTableData(props) {
                         max = elem.maxRem
                     }
                 });
-                let dict = {}
-                dict['state'] = key
-                dict['jobCount'] = value.length
-                dict['minRem'] = min
-                dict['maxRem'] = max
-                finalArr.push(dict)
+                let storeData = {}
+                storeData['state'] = key
+                storeData['jobCount'] = value.length
+                storeData['minRem'] = min
+                storeData['maxRem'] = max
+                finalArr.push(storeData)
             }
             finalArr.sort((a, b) => (a.state > b.state) ? 1 : -1)
             const rows = finalArr.map((elem) => {
