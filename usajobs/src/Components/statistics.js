@@ -14,6 +14,7 @@ const styles = {
  */
 
 function Fields(props) {
+
   const options = {
     legend: {
       align: "bottom",
@@ -45,6 +46,7 @@ function Fields(props) {
     responsive: true,
     maintainAspectRatio: false,
   };
+
   const legend = {
     display: true,
     position: "bottom",
@@ -60,18 +62,21 @@ function Fields(props) {
    * jobs and full time jobs, and displays in Bar graph
    * returns Bar Graph
    */
+
   const displayJobTime = () => {
     if(props.jobTypeData) {
+
       let stateData = props.jobTypeData
-      
       const stateName=[]
       const FullTimeCount=[]
       const PartTimeCount=[]
+      
       for(let i=0; i<stateData.length; i++){
         stateName.push(stateData[i].state)
         FullTimeCount.push(stateData[i].FullTime)
         PartTimeCount.push(stateData[i].PartTime)
       }
+
       const data = {
           labels: stateName,
           datasets: [
@@ -104,4 +109,5 @@ function Fields(props) {
     </div>
   );
 }
+
 export default Fields;
