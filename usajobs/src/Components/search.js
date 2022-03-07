@@ -2,8 +2,10 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './search.css'
 
-/* Function showDetails displays the job's complete details 
-   when the user clicks on the job row which is returned by function Search */
+/* 
+When the user clicks on the job information row which is returned by function Search
+then the function showDetails displays all the details related to the clicked job row.
+ */
 function showDetails(elem){
 
     document.querySelector("#ltitle").textContent="Job Title : "
@@ -19,6 +21,7 @@ function showDetails(elem){
     document.querySelector("#lvduties").textContent=elem['duties']
 
     document.querySelector("#ltime").textContent="Job Time : "
+
     if(elem['jobType']==="1"){
         document.querySelector("#lvtime").textContent="Full Time"
     }
@@ -38,113 +41,115 @@ function showDetails(elem){
 
 }
 
-/* Function Search displays the jobs which matches the filter inputs
-   These inputs are given by the user
-   This function also has error handling for the filters */ 
+/* Function Search take the filterData inputs given by the user and displays 
+    the jobs which fits with the filterData inputs.
+    The function has multiple error handling for the filters. */
 
 function Search(props) {
+
     const displayStateData = () => {
     if(props.jobData){
-    const filter = props.searchFilterData
+    const filterData = props.searchFilterData
     const jobData = props.jobData
-    const filterNames=Object.keys(filter)
+    const filterNamesData=Object.keys(filterData)
 
-    const searchList = []
+    const searchResult = []
     
     jobData.forEach(job => {
-        if((filter.state !== "None") && (job.locations === filter.state)){
-                  if(filterNames.includes("minSalary")) { 
-                    if(Number(job.remuneration.MinimumRange) >= Number(filter.minSalary)) {
-                        if(filterNames.includes("maxSalary")){
-                            if(Number(job.remuneration.MaximumRange) <= Number(filter.maxSalary)){
-                                        if(filterNames.includes("field")){
-                                            if(filter.field === "Military Services"){
+
+        if((filterData.state !== "None") && (job.locations === filterData.state)){
+                  if(filterNamesData.includes("minSalary")) { 
+                    if(Number(job.remuneration.MinimumRange) >= Number(filterData.minSalary)) {
+                        if(filterNamesData.includes("maxSalary")){
+                            if(Number(job.remuneration.MaximumRange) <= Number(filterData.maxSalary)){
+                                        if(filterNamesData.includes("field")){
+                                            if(filterData.field === "Military Services"){
                                                 if(job.positionTitle.includes("Military")){
-                                                    if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
-                                                        if((filterNames.includes("fullTime")) && (job.jobType==="1")){
-                                                            searchList.push(job);
+                                                    if(filterNamesData.includes("fullTime") || filterNamesData.includes("partTime")){
+                                                        if((filterNamesData.includes("fullTime")) && (job.jobType==="1")){
+                                                            searchResult.push(job);
                                                         }
-                                                        if(filterNames.includes("partTime") && (job.jobType==="2")){
-                                                            searchList.push(job);
+                                                        if(filterNamesData.includes("partTime") && (job.jobType==="2")){
+                                                            searchResult.push(job);
                                                         } 
 
                                                     }
                                                     else{
-                                                        searchList.push(job); 
+                                                        searchResult.push(job); 
                                                     }
 
                                                     
                                                 }
                                             }  
-                                            else if(filter.field === "Medical Services"){
+                                            else if(filterData.field === "Medical Services"){
                                                 if(job.positionTitle.includes("Medicine") || job.positionTitle.includes("Nurse")){
                                                     
-                                                    if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
-                                                        if((filterNames.includes("fullTime")) && (job.jobType==="1")){
-                                                            searchList.push(job);
+                                                    if(filterNamesData.includes("fullTime") || filterNamesData.includes("partTime")){
+                                                        if((filterNamesData.includes("fullTime")) && (job.jobType==="1")){
+                                                            searchResult.push(job);
                                                         }
-                                                        if(filterNames.includes("partTime") && (job.jobType==="2")){
-                                                            searchList.push(job);
+                                                        if(filterNamesData.includes("partTime") && (job.jobType==="2")){
+                                                            searchResult.push(job);
                                                         } 
 
                                                     }
                                                     else{
-                                                        searchList.push(job); 
+                                                        searchResult.push(job); 
                                                     }
                                                 }
                                             }  
-                                            else if(filter.field === "Finance and Accounting"){
+                                            else if(filterData.field === "Finance and Accounting"){
                                                 if(job.positionTitle.includes("Accounting") || job.positionTitle.includes("Finance") || job.positionTitle.includes("Financial")){
                                                     
-                                                    if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
-                                                        if((filterNames.includes("fullTime")) && (job.jobType==="1")){
-                                                            searchList.push(job);
+                                                    if(filterNamesData.includes("fullTime") || filterNamesData.includes("partTime")){
+                                                        if((filterNamesData.includes("fullTime")) && (job.jobType==="1")){
+                                                            searchResult.push(job);
                                                         }
-                                                        if(filterNames.includes("partTime") && (job.jobType==="2")){
-                                                            searchList.push(job);
+                                                        if(filterNamesData.includes("partTime") && (job.jobType==="2")){
+                                                            searchResult.push(job);
                                                         } 
 
                                                     }
                                                     else{
-                                                        searchList.push(job); 
+                                                        searchResult.push(job); 
                                                     }
                                                 }
                                             } 
-                                            else if(filter.field === "Engineering"){
+                                            else if(filterData.field === "Engineering"){
                                                 if(job.positionTitle.includes("IT") || job.positionTitle.includes("Engineer") || job.positionTitle.includes("Engineering") ){
                                                     
-                                                    if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
-                                                        if((filterNames.includes("fullTime")) && (job.jobType==="1")){
-                                                            searchList.push(job);
+                                                    if(filterNamesData.includes("fullTime") || filterNamesData.includes("partTime")){
+                                                        if((filterNamesData.includes("fullTime")) && (job.jobType==="1")){
+                                                            searchResult.push(job);
                                                         }
-                                                        if(filterNames.includes("partTime") && (job.jobType==="2")){
-                                                            searchList.push(job);
+                                                        if(filterNamesData.includes("partTime") && (job.jobType==="2")){
+                                                            searchResult.push(job);
                                                         } 
 
                                                     }
                                                     else{
-                                                        searchList.push(job); 
+                                                        searchResult.push(job); 
                                                     }
                                                 }
                                             } 
-                                            else if(filter.field === "Food Industry"){
+                                            else if(filterData.field === "Food Industry"){
                                                 if(job.positionTitle.includes("Cook") || job.positionTitle.includes("Food")){
                                                     
-                                                    if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
-                                                        if((filterNames.includes("fullTime")) && (job.jobType==="1")){
-                                                            searchList.push(job);
+                                                    if(filterNamesData.includes("fullTime") || filterNamesData.includes("partTime")){
+                                                        if((filterNamesData.includes("fullTime")) && (job.jobType==="1")){
+                                                            searchResult.push(job);
                                                         }
-                                                        if(filterNames.includes("partTime") && (job.jobType==="2")){
-                                                            searchList.push(job);
+                                                        if(filterNamesData.includes("partTime") && (job.jobType==="2")){
+                                                            searchResult.push(job);
                                                         } 
 
                                                     }
                                                     else{
-                                                        searchList.push(job); 
+                                                        searchResult.push(job); 
                                                     }
                                                 }
                                             } 
-                                            else if(filter.field === "Other Fields"){
+                                            else if(filterData.field === "Other Fields"){
                                                 if(job.positionTitle.includes("Cook") || job.positionTitle.includes("Food") || job.positionTitle.includes("IT") || job.positionTitle.includes("Engineer") || job.positionTitle.includes("Engineering") || 
                                                 job.positionTitle.includes("Accounting") || job.positionTitle.includes("Finance") || job.positionTitle.includes("Financial") ||
                                                 job.positionTitle.includes("Medicine") || job.positionTitle.includes("Nurse") || job.positionTitle.includes("Military")){
@@ -152,32 +157,32 @@ function Search(props) {
                                                 }
                                                 else
                                                 {
-                                                    if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
-                                                        if((filterNames.includes("fullTime")) && (job.jobType==="1")){
-                                                            searchList.push(job);
+                                                    if(filterNamesData.includes("fullTime") || filterNamesData.includes("partTime")){
+                                                        if((filterNamesData.includes("fullTime")) && (job.jobType==="1")){
+                                                            searchResult.push(job);
                                                         }
-                                                        if(filterNames.includes("partTime") && (job.jobType==="2")){
-                                                            searchList.push(job);
+                                                        if(filterNamesData.includes("partTime") && (job.jobType==="2")){
+                                                            searchResult.push(job);
                                                         } 
 
                                                     }
                                                     else{
-                                                        searchList.push(job); 
+                                                        searchResult.push(job); 
                                                     }
                                                 }
                                             }
                                             else{
-                                                if(filterNames.includes("fullTime") || filterNames.includes("partTime")){
-                                                    if((filterNames.includes("fullTime")) && (job.jobType==="1")){
-                                                        searchList.push(job);
+                                                if(filterNamesData.includes("fullTime") || filterNamesData.includes("partTime")){
+                                                    if((filterNamesData.includes("fullTime")) && (job.jobType==="1")){
+                                                        searchResult.push(job);
                                                     }
-                                                    if(filterNames.includes("partTime") && (job.jobType==="2")){
-                                                        searchList.push(job);
+                                                    if(filterNamesData.includes("partTime") && (job.jobType==="2")){
+                                                        searchResult.push(job);
                                                     } 
 
                                                 }
                                                 else{
-                                                    searchList.push(job); 
+                                                    searchResult.push(job); 
                                                 }
                                             } 
 
@@ -186,7 +191,7 @@ function Search(props) {
                                   
                                 else
                                 {
-                                    searchList.push(job)
+                                    searchResult.push(job)
                                                 
                                 }
                             }
@@ -199,7 +204,7 @@ function Search(props) {
     });
     
     let valueDiv = []
-    searchList.forEach(elem => { 
+    searchResult.forEach(elem => { 
         const title = elem['positionTitle']
         const city = elem['cityName']
         const date = elem['CloseDate']
@@ -232,6 +237,7 @@ function Search(props) {
                         <tbody className="displayed" id="tableId">{displayStateData()} </tbody>
                     </table>
                 </div>
+                
                 <div className="Details col-md-8 col-sm-12 col-xs-12">
                     <div>
                         <div className="row">
