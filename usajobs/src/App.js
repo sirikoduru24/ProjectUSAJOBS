@@ -1,12 +1,15 @@
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { useEffect, useState } from 'react';
+
+import jobsData from "./API/jobsData"
+import mapData from './API/mapData';
+
 import './App.css';
 import './charts.css';
-import Map from "./Components/Map.js";
-import jobsData from "./API/jobsData"
-import { useEffect, useState } from 'react';
-import mapData from './API/mapData';
-import ShowTableData from "./Components/showTableData"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+
+import Map from "./Components/Map.js";
+import ShowTableData from "./Components/showTableData"
 import LineChart from "./Components/Chart2";
 import Houses from "./Components/Chart1";
 import Fields from "./Components/statistics";
@@ -16,6 +19,7 @@ import Donut from "./Components/DonutChart"
 import PublicJobs from "./Components/publicJobs"
 import FilterForSearch from "./Components/FilterForSearch"
 import Search from "./Components/search"
+
 import Loader from "react-loader-spinner";
 
 function App() {
