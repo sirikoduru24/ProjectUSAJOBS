@@ -207,23 +207,24 @@ function App() {
             return result;
           }, {});
         };
+        
         const groupByCity = groupBy(jobData, 'locations');
         let result = []
         for(const [a,b] of Object.entries(groupByCity)) {
-          let dict = {}
-            dict['state'] = a
+          let fullTimePartTimeJobData = {}
+          fullTimePartTimeJobData['state'] = a
           let count1 = 0, count2 = 0
           b.forEach(element => {
-              if(element.jobType === "1") {
-                count1 = count1 + 1
-              }
-              if(element.jobType === '2') {
-                count2 = count2 + 1
-              }
+            if(element.jobType === "1") {
+              count1 = count1 + 1
+            }
+            if(element.jobType === '2') {
+              count2 = count2 + 1
+            }
           });
-          dict['FullTime'] = count1
-          dict['PartTime'] = count2
-          result.push(dict)
+          fullTimePartTimeJobData['FullTime'] = count1
+          fullTimePartTimeJobData['PartTime'] = count2
+          result.push(fullTimePartTimeJobData)
         }
         setJobTypeData(result)
       }
@@ -232,8 +233,6 @@ function App() {
   },[jobData])
   
   useEffect( () => {
-    /* This function is to take mapsdata from API maps and 
-    *  then store it in maps data using set state.*/
     const getMapsData = async () => {
       const data = await mapData("countries/us/us-all.geo.json")
       setMapsData(data)
@@ -242,10 +241,6 @@ function App() {
   },[])
 
   useEffect( () => {
-    /**
-     *This function works on all data and 
-     * store count of public hiring path jobs per state.
-     */
     const getHiringPaths = async () => {
       if(jobData){
         const groupBy = (array, key) => {
@@ -256,6 +251,7 @@ function App() {
             return result;
           }, {});
         };
+
         const groupByState = groupBy(jobData, 'locations');
         let stateHiringPaths = []
         let pubCount=0
@@ -269,7 +265,6 @@ function App() {
                 }
               })
             });
-          //}
           shp['PublicJobs']  = pubCount
           stateHiringPaths.push(shp)
         }
@@ -317,10 +312,6 @@ function App() {
   },[jobData])
 
   useEffect( () => {
-    /*
-    *This function works on a data which is grouped by state
-    * and sort jobs by city names, and available jobs per city.
-    */
     const sortElementsByCity = () => {
       if(groupedByStates && filterData) {
         const jobs = groupedByStates[filterData]
@@ -354,95 +345,95 @@ function App() {
   return (
     <Router>
       <div>
-      <nav class="navbar navbar-expand-lg navbar-dark ">
-      <a class="navbar-brand inactiveLink"><h1 className="links">JOBS DASHBOARD</h1></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbarMd">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse" id="collapsingNavbarMd">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-              <Link to="/"><h4 className="links">NATION WIDE JOBS DATA</h4></Link>
-          </li>
-          <li class="nav-item">
-              <Link to="/stateMaps"><h4 className="links">STATE WIDE JOBS DATA</h4></Link>
-          </li>
-          <li class="nav-item">
-              <Link to="/search"><h4 className="links">SEARCH</h4></Link>
-          </li>
-          <li class="nav-item">
-              <Link to="/statistics"><h4 className="links">STATISTICS</h4></Link>
-          </li>
-      </ul>
-  </div>
-</nav>
-<Switch>
-        <Route path="/search">
-          <div>
-            <FilterForSearch setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)} statedata={allStatesData}/>
+        <nav class="navbar navbar-expand-lg navbar-dark ">
+          <a class="navbar-brand inactiveLink"><h1 className="links">JOBS DASHBOARD</h1></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbarMd">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse" id="collapsingNavbarMd">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                  <Link to="/"><h4 className="links">NATION WIDE JOBS DATA</h4></Link>
+              </li>
+              <li class="nav-item">
+                  <Link to="/stateMaps"><h4 className="links">STATE WIDE JOBS DATA</h4></Link>
+              </li>
+              <li class="nav-item">
+                  <Link to="/search"><h4 className="links">SEARCH</h4></Link>
+              </li>
+              <li class="nav-item">
+                  <Link to="/statistics"><h4 className="links">STATISTICS</h4></Link>
+              </li>
+            </ul>
           </div>
+        </nav>
+        <Switch>
+          <Route path="/search">
             <div>
-            {(!jobData) && (
-            <div class = "loaderProperties">
-            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
-                </div>)}
-            {searchFilterData && (
-            <Search searchFilterData={searchFilterData} jobData={jobData}></Search>
-          )}
-          </div>
-        </Route>
-        <Route path = "/stateMaps">
-          <div class = "container-fluid">
-          <div class = "row">
-            <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
-          </div>
-          {(!jobData) && (
-            <div class = "loaderProperties">
-            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
-                </div>)}
-          <div class = "row">
-            <div class = "col-md-6 donutprops">
-              {(filterData && selectedStateCityName) && (
-                <Donut citiesData = {selectedStateCityName} jobCount = {selectedStateCityJobs}>
-                </Donut>)}
+              <FilterForSearch setSearchFilterData={(allfilters) => setSearchFilterData(allfilters)} statedata={allStatesData}/>
             </div>
-            <div class = 'col-md-6' style={{alignContent:'center'}}>
-            {filterData && (
-            <StateData citiesData = {groupedByCities}></StateData>
-          )}
+            <div>
+              {(!jobData) && (
+              <div class = "loaderProperties">
+              <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                  </div>)}
+              {searchFilterData && (
+              <Search searchFilterData={searchFilterData} jobData={jobData}></Search>
+              )}
             </div>
-          </div>
-          </div>
-        </Route>
-        <Route path="/statistics">
-          <div class="row">
-          {(!jobTypeData) && (
-            <div class = "loaderProperties">
-            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
-                </div>)}
-            <Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses>
-            <LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart>
-            <Fields jobTypeData={jobTypeData}></Fields>
-            <PublicJobs hiringPaths={hiringPaths}></PublicJobs>
-          </div>
-        </Route>
-        <Route path="/">
-          <div class = "container-fluid">
-            <div class = "row">
-            {(!jobData) && (
-            <div class = "loaderProperties">
-            <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
-                </div>)}
-              <div class = "col-md-7">
-                <Map mapdata = {mapsData} jobdata = {jobData}/>
+          </Route>
+          <Route path = "/stateMaps">
+            <div class = "container-fluid">
+              <div class = "row">
+                <FilterForStateMaps setFilterData = {(fd) => setFilterData(fd)} statedata = {allStatesData}></FilterForStateMaps>
               </div>
-              <div class = "col-md-5 tableFloat">
-                <ShowTableData jobdata = {jobData}/>
-              </div> 
+            {(!jobData) && (
+              <div class = "loaderProperties">
+              <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                  </div>)}
+              <div class = "row">
+                <div class = "col-md-6 donutprops">
+                  {(filterData && selectedStateCityName) && (
+                  <Donut citiesData = {selectedStateCityName} jobCount = {selectedStateCityJobs}>
+                  </Donut>)}
+              </div>
+              <div class = 'col-md-6' style={{alignContent:'center'}}>
+                {filterData && (
+                <StateData citiesData = {groupedByCities}></StateData>
+                )}
+              </div>
             </div>
-          </div>
-        </Route>
-      </Switch>
+            </div>
+          </Route>
+          <Route path="/statistics">
+            <div class="row">
+            {(!jobTypeData) && (
+              <div class = "loaderProperties">
+              <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                  </div>)}
+              <Houses jobdata = {fieldData1} typedata = {jobTypeData}></Houses>
+              <LineChart jobdata = {remunerationData} typedata = {jobTypeData}> </LineChart>
+              <Fields jobTypeData={jobTypeData}></Fields>
+              <PublicJobs hiringPaths={hiringPaths}></PublicJobs>
+            </div>
+          </Route>
+          <Route path="/">
+            <div class = "container-fluid">
+              <div class = "row">
+              {(!jobData) && (
+              <div class = "loaderProperties">
+              <Loader type="Grid" color="#00BFFF" height={75} width={75} ></Loader> 
+                  </div>)}
+                <div class = "col-md-7">
+                  <Map mapdata = {mapsData} jobdata = {jobData}/>
+                </div>
+                <div class = "col-md-5 tableFloat">
+                  <ShowTableData jobdata = {jobData}/>
+                </div> 
+              </div>
+            </div>
+          </Route>
+        </Switch>
     </div>
   </Router>
  );
