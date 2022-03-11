@@ -1,7 +1,7 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 
-let backgroundColors = [
+const backgroundColors = [
   "rgba(54, 162, 235, 0.8)",
   "rgba(255, 206, 86, 0.8)",
   "rgba(255, 99, 132, 0.8)",
@@ -14,7 +14,7 @@ let backgroundColors = [
   "rgba(210, 199, 199, 0.8)"
 ];
 
-let borderColors = [
+const borderColors = [
   "rgba(54, 162, 235, 1)",
   "rgba(255, 206, 86, 1)",
   "rgba(255, 99, 132, 1)",
@@ -49,13 +49,17 @@ const styles = {
   width: "500px"
 }
 
-/* Function Houses returns the Pie chart which shows the job fields according 
-   to the numbers in the USA 
-   The data is taken from USAjobs API and the required array is obtained from app.js */
+/**
+ * Function Houses returns the Pie chart which shows the job fields according  
+  to the numbers in the USA 
+  The data is taken from USAjobs API and the required array is obtained from app.js
+ * @param {*} props 
+ * @returns 
+ */
+
 export default function Houses(props) {
   const renderFieldData = () =>{
     if(props.jobdata) {
-
       let fieldCountArray=[]
       let fieldNameArray=[]
       props.jobdata.forEach(element => {
@@ -67,8 +71,7 @@ export default function Houses(props) {
         fieldCountArray.push(element.Field6)
         fieldCountArray.push(element.Field7)
         fieldCountArray.push(element.Field8)
-
-
+      
         fieldNameArray.push(element.FieldName1)
         fieldNameArray.push(element.FieldName2)
         fieldNameArray.push(element.FieldName3)
@@ -77,31 +80,22 @@ export default function Houses(props) {
         fieldNameArray.push(element.FieldName6)
         fieldNameArray.push(element.FieldName7)
         fieldNameArray.push(element.FieldName8)
-        
-
       });
 
-
-    const data = {
-      labels: fieldNameArray,
-      datasets: [
-        {
+      const data = {
+        labels: fieldNameArray,
+        datasets: [{
           data: fieldCountArray,
           backgroundColor: backgroundColors,
           borderColor: borderColors,
           borderWidth: 1
-        }
-      ]
-    };
+        }]
+      };
   
-    return (
+      return (
       <Pie data={data} legend={legend} options={options} height = {500} width = {500}/>
-    );
-    
-
+      );
+      }
+    }
+    return <div class = "col-md-6"style={styles}> {renderFieldData()} </div>
   }
-  
-  
-}
-return <div class = "col-md-6"style={styles}> {renderFieldData()} </div>
-}
