@@ -1,86 +1,79 @@
 import React from "react";
-import { Line, Pie } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 const styles = {
   height: "600px",
   width: "600px"
 }
-
-/* Function LineChart returns the Line chart which compares the minimum and maximum 
+/**
+ * Function LineChart returns the Line chart which compares the minimum and maximum 
    remuneration of job based of the each states.
-   The data is taken from USAjobs API and the required array is obtained from app.js */
-
+   The data is taken from USAjobs API and the required array is obtained from app.js
+ * @param {*} props 
+ * @returns 
+ */
 export default function LineChart(props) {
   const renderJobsData = () => {
     if(props.jobdata) {
       let stateArray=[]
-      let minArray=[]
-      let maxArray=[]
+      let minRemunerations = []
+      let maxRemunerations = []
       props.jobdata.forEach(element => {
         stateArray.push(element.state)
-        minArray.push(element.minRem)
-        maxArray.push(element.maxRem)
+        minRemunerations.push(element.minimumRemuneration)
+        maxRemunerations.push(element.maximumRemuneration)
       });
     
-    
     const data = {
+      labels: stateArray,
+      datasets: [{
+        label: "Max Salary",
+        data: maxRemunerations,
+        fill: false,
+        backgroundColor: "rgb(252, 70, 26)",
+        borderColor: "rgba(252, 70, 26, 0.5)",    
+      },
+      {
+        label: "Min Salary",
+        data: minRemunerations,
+        fill: false,
+        backgroundColor: "rgb(0, 109, 140)",
+        borderColor: "rgba(0, 109, 140, 0.5)",
+      }]};
 
-      
-        labels: stateArray,
-        datasets: [
-          {
-            label: "Max Salary",
-            data: maxArray,
-            fill: false,
-            backgroundColor: "rgb(252, 70, 26)",
-            borderColor: "rgba(252, 70, 26, 0.5)",
-            
-          },
-          {
-            label: "Min Salary",
-            data: minArray,
-            fill: false,
-            backgroundColor: "rgb(0, 109, 140)",
-      borderColor: "rgba(0, 109, 140, 0.5)",
-          }
-        ]
-      };
-      const legend = {
-        display: true,
-        position: 'bottom',
-        labels: {
-          fontColor: "#323130",
-          fontSize: 14,
-        },
+    const legend = {
+      display: true,
+      position: 'bottom',
+      labels: {
+        fontColor: "#323130",
+        fontSize: 14,
+      },
     };
+    
     const options = {
       legend: {
         labels: {
           fontColor:'blue'
         }
       },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
-          xAxes: [
-            {
-              ticks: {
-                autoSkip: false,
-                maxRotation: 180,
-                minRotation: 180
-              }
-            }
-          ],
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+          },
         },
-        tooltips: {
-        },
-        responsive: true,
-        maintainAspectRatio: false,
+        ],
+        xAxes: [{
+          ticks: {
+            autoSkip: false,
+            maxRotation: 180,
+            minRotation: 180
+          }
+        }],
+      },
+      tooltips: {},
+      responsive: true,
+      maintainAspectRatio: false,
       };
     
       return (
@@ -88,5 +81,4 @@ export default function LineChart(props) {
       );}}
       
       return <div class = "col-md-6" style={styles}> {renderJobsData()} </div>
-
   }
