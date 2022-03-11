@@ -1,20 +1,20 @@
 import './publicJobs.css';
 import React from "react";
-import {Bar} from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
   
 const styles = {
   height:'600px',
   width: '600px'
 }
-
 /**
- * PublicJobs()
  * This function takes input from hiringPath data,
  * sent from the app.js using props, and store data 
  * as state and respective count of total number 
  * of public hiring jobs and display Bar Graph 
  * param {*} props 
  * returns Bar component
+ * @param {*} props (hiringPath data)
+ * @returns <Bar> element
  */
 function PublicJobs(props) {
   const options = {
@@ -28,16 +28,16 @@ function PublicJobs(props) {
       }
     },
     scales: {
-        xAxes: [{
-           gridLines: {
-              display: false
-           }
-        }],
-        yAxes: [{
-           gridLines: {
-              display: false
-           }
-        }]
+      xAxes: [{
+        gridLines: {
+          display: false
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+        display: false
+        }
+      }]
     },
     tooltips: {
       mode: "label",
@@ -45,6 +45,7 @@ function PublicJobs(props) {
     responsive: true,
     maintainAspectRatio: false,
   };
+
   const legend = {
     display: true,
     position: "bottom",
@@ -58,18 +59,18 @@ function PublicJobs(props) {
     if(props.hiringPaths) {
       let stateData = props.hiringPaths
       const stateName=[]
-      const Pcount=[]
+      const publicJobsCount=[]
 
-      for(let i=0; i<stateData.length; i++){
+      for(const i=0; i<stateData.length; i++){
         stateName.push(stateData[i].state)
-        Pcount.push(stateData[i].PublicJobs)
+        publicJobsCount.push(stateData[i].PublicJobs)
       }
       const data = {
           labels: stateName,
           datasets: [
             {
               label: "Public Hiring Path",
-              data: Pcount,
+              data: publicJobsCount,
               fill: false,
               backgroundColor: "aqua",
               borderColor: "red",
@@ -77,7 +78,7 @@ function PublicJobs(props) {
             }
           ]
       }
-      return(<Bar  className="PubJobDiv" data={data} options={options} legend={legend} width={500} height={500}></Bar>
+      return(<Bar  className="publicJobDiv" data={data} options={options} legend={legend} width={500} height={500}></Bar>
       )
       
     }
