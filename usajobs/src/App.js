@@ -109,9 +109,11 @@ function App() {
 
   
   useEffect( () => {
-    /* This function is to get data according to the fields.
-    Here each field is mapped with a count of number of jobs available in that field and is returned as
-    an array.*/
+    /**
+     * This function is to get data according to the fields.
+     * Here each field is mapped with a count of number of jobs 
+     * available in that field and is returned as an array.
+     */
     const getFieldData = async () => {
       if(jobData) {
         const groupBy = (array, key) => {
@@ -195,8 +197,11 @@ function App() {
   },[jobData])
     
   useEffect( () => {
-    /* This function is to get job by type either full time or part-time.
-    Here the dictionary of statename, count of full-time and part-time jobs in that state are returned.*/
+    /**
+     * This function is to get job by type either full time or part-time.
+     * Here the dictionary of statename, count of full-time and part-time 
+     * jobs in that state are returned.
+     */
     const getJobsByType = async () => {
       if(jobData) {
         const groupBy = (array, key) => {
@@ -258,13 +263,13 @@ function App() {
         for(const [state,hp] of Object.entries(groupByState)) {
           let shp = {}
           shp['state'] = state      
-            hp.forEach(elem => {
-              elem.hiringPath.forEach(hp => {
-                if(hp==='public'){
-                  pubCount=pubCount+1
-                }
-              })
-            });
+          hp.forEach(elem => {
+            elem.hiringPath.forEach(hp => {
+              if(hp==='public'){
+                pubCount=pubCount+1
+              }
+            })
+          });
           shp['PublicJobs']  = pubCount
           stateHiringPaths.push(shp)
         }
@@ -275,7 +280,9 @@ function App() {
   },[jobData])
   
   useEffect( () => {
-    /* This function gets all data from Maps and stores state names.*/
+    /**
+     * This function gets all data from Maps and stores state names.
+     */
     const allStatesInfo = async () => {
       if(mapsData) {
         let data = mapsData.data
