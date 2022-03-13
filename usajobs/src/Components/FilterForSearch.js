@@ -1,5 +1,4 @@
 import './search.css'
-
 /**
  * getSelectedValues() reads user entered values,
  * store them as key and value and return to serach tag.
@@ -33,7 +32,7 @@ function getSelectedValue(props) {
         filters['maxSalary']=maxSalary;
     }
     else{
-        filters['maxSalary']= 100000000000000000;
+        filters['maxSalary']= 1000000000000000;
     }
     if(document.getElementById("part-time").checked)
     {
@@ -61,7 +60,6 @@ function clearFilters() {
     document.getElementById("full-time").checked = false;
 }
 
-
 /**
  * FilterForSearch()
  * This function displays filters, 
@@ -79,11 +77,10 @@ function FilterForSearch(props) {
         return states
     }
 }
-
     return (
     <div className="search container-fluid">
         <div className="row1 row">
-        <div className="col-md">
+            <div className="col-md">
                 <label className="stateddlabel" for="statedd">State: </label>
                 <select className="" id="statedd" required>
                     <option value="None" selected></option>
@@ -113,7 +110,6 @@ function FilterForSearch(props) {
         <div className="jobTime col-md">
             <input type="checkbox" id="full-time" value="Full-Time"/>
             <label for="full-time">Full-Time</label>
-        
             <input type="checkbox" id="part-time" value="Part-Time"/>
             <label for="part-time">Part-Time</label>
         </div>    
@@ -127,4 +123,3 @@ function FilterForSearch(props) {
 }
 
 export default FilterForSearch
-
